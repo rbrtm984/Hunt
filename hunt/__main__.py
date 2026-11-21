@@ -29,7 +29,8 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--emails", help="folder of alert email bodies (*.txt) and/or postings JSON (*.json)")
     r.add_argument("--tracked", help="CSV or JSON of company,title already in the tracker")
     r.add_argument("--seen", help="seen.json path (dedupe across days)")
-    r.add_argument("--record-seen", action="store_true", help="update --seen with today's postings")
+    r.add_argument("--record-seen", action="store_true", help="update --seen (and --health) with today's run")
+    r.add_argument("--health", help="health.json path: per-source counts from past runs, to spot a source that went quiet")
     r.add_argument("--no-boards", action="store_true", help="skip every API: company boards and feeds")
     r.add_argument("--no-feeds", action="store_true", help="skip the cross-company feeds (HN, Remotive, Adzuna...)")
     r.add_argument("--feeds", help="feeds TOML (default config/feeds.toml)")
@@ -69,10 +70,11 @@ def _run(args) -> int:
         use_boards=not args.no_boards,
         record_seen=args.record_seen,
         today=args.date,
+        health_path=args.health,
     )
     log = pipeline.write_outputs(res, args.out, args.top, args.max_rows, args.date)
     print(pipeline.summarize(res, args.top))
-    print(json.dumps(log, indent=1))
+    print(json.dumps({k: v for k, v in log.items() if k != "sources"}, indent=1))
     return 0
 
 

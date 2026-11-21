@@ -11,6 +11,7 @@ import json
 import re
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 
 USER_AGENT = "hunt-job-pipeline/0.1 (personal job search; public job board APIs)"
@@ -37,7 +38,12 @@ def get_json(url: str, timeout: float = 20.0, retries: int = 2, body: dict | Non
             if e.code in (400, 401, 403, 404):
                 raise FetchError(f"HTTP {e.code} for {url}") from e
             last = e
-        except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as e:
+        except urllib.error.URLError as e:
+            if "Tunnel connection failed: 403" in str(e.reason):
+                # The cloud environment's network doesn't allow this host. Retrying won't help.
+                raise FetchError(f"HTTP 403, host not on this environment's allowed list: {urllib.parse.urlsplit(url).hostname}") from e
+            last = e
+        except (TimeoutError, json.JSONDecodeError) as e:
             last = e
         time.sleep(1.5 * (attempt + 1))
     raise FetchError(f"{type(last).__name__}: {last} for {url}")

@@ -11,6 +11,7 @@ from datetime import date
 from pathlib import Path
 
 from .config import Company
+from . import health
 from .filters import first_skip_reason
 from .models import Posting
 from .score import rank_key, score
@@ -30,38 +31,57 @@ class RunResult:
     per_source: Counter = field(default_factory=Counter)
     errors: list[str] = field(default_factory=list)
     unparsed_emails: list[str] = field(default_factory=list)
+    sources: dict = field(default_factory=dict)  # per-source health, see health.py
+    problems: list[str] = field(default_factory=list)
 
     def skip_counts(self) -> Counter:
         return Counter(p.skip_reason.split(":")[0] for p in self.skipped)
 
 
-def collect_boards(companies: list[Company], fetcher=get_json, workers: int = 6) -> tuple[list[Posting], list[str]]:
+def _record(sources: dict, name: str, found: list[Posting], err: Exception | None = None) -> None:
+    s = {"fetched": len(found), "malformed": sum(1 for p in found if not p.title or not p.url)}
+    if err is not None:
+        s["error"] = str(err)
+        s["http_status"] = health.http_status(str(err))
+        s["shape"] = isinstance(err, health.ShapeError)
+    sources[name] = s
+
+
+def collect_boards(companies: list[Company], fetcher=get_json, workers: int = 6, sources: dict | None = None) -> tuple[list[Posting], list[str]]:
     postings: list[Posting] = []
     errors: list[str] = []
+    sources = {} if sources is None else sources
 
     def one(c: Company):
         try:
             return c, boards.fetch(c.platform, c.slug, c.name, fetcher=fetcher), None
-        except (FetchError, ValueError, KeyError, TypeError) as e:
-            return c, [], f"{c.name} ({c.platform}/{c.slug}): {e}"
+        except (FetchError, ValueError, KeyError, TypeError, AttributeError) as e:
+            return c, [], e
 
     with ThreadPoolExecutor(max_workers=workers) as pool:
         for c, found, err in pool.map(one, companies):
+            _record(sources, f"{c.platform.capitalize()}: {c.name}", found, err)
             if err:
-                errors.append(err)
+                errors.append(f"{c.name} ({c.platform}/{c.slug}): {err}")
             for p in found:
                 p.tags = list(dict.fromkeys(p.tags + c.tags))
             postings.extend(found)
     return postings, errors
 
 
-def collect_feeds(feeds: list[tuple[str, dict]], fetcher=get_json) -> tuple[list[Posting], list[str]]:
+def collect_feeds(feeds: list[tuple[str, dict]], fetcher=get_json, sources: dict | None = None, env=None) -> tuple[list[Posting], list[str]]:
     postings: list[Posting] = []
     errors: list[str] = []
+    sources = {} if sources is None else sources
     for name, opts in feeds:
         try:
-            postings += feedsrc.fetch(name, opts, fetcher=fetcher)
+            found = feedsrc.fetch(name, opts, fetcher=fetcher, env=env)
+            _record(sources, f"Feed: {name}", found)
+            postings += found
+        except feedsrc.NotConfigured as e:
+            sources[f"Feed: {name}"] = {"fetched": 0, "malformed": 0, "status": "not set up", "note": str(e)}
         except (FetchError, ValueError, KeyError, TypeError, AttributeError) as e:
+            _record(sources, f"Feed: {name}", [], e)
             errors.append(f"feed {name}: {e}")
     return postings, errors
 
@@ -79,23 +99,35 @@ def run(
     fetcher=get_json,
     record_seen: bool = False,
     today: str | None = None,
+    health_path: str | None = None,
+    env=None,
 ) -> RunResult:
     today = today or date.today().isoformat()
     res = RunResult()
     collected: list[Posting] = []
 
     if use_boards and companies:
-        found, errs = collect_boards(companies, fetcher=fetcher)
+        found, errs = collect_boards(companies, fetcher=fetcher, sources=res.sources)
         collected += found
         res.errors += errs
     if use_boards and feeds:
-        found, errs = collect_feeds(feeds, fetcher=fetcher)
+        found, errs = collect_feeds(feeds, fetcher=fetcher, sources=res.sources, env=env)
         collected += found
         res.errors += errs
     if email_dir:
         found, unparsed = load_email_folder(email_dir)
         collected += found
         res.unparsed_emails = unparsed
+        by_src: dict[str, list[Posting]] = {}
+        for p in found:
+            by_src.setdefault(p.source, []).append(p)
+        for src, items in by_src.items():
+            _record(res.sources, f"Email: {src}", items)
+
+    history = health.load_history(health_path)
+    res.problems = health.assess({k: v for k, v in res.sources.items() if v.get("status") != "not set up"}, history)
+    if res.unparsed_emails:
+        res.problems.append(f"Email: {len(res.unparsed_emails)} alert email(s) in a format the script can't read: {', '.join(res.unparsed_emails[:5])}.")
 
     seen = SeenStore(seen_path)
     tracked = Tracked(tracked_path)
@@ -126,6 +158,8 @@ def run(
         for p in res.kept + res.skipped:
             seen.add(p, today)
         seen.save()
+        if health_path:
+            health.save_history(health_path, health.update_history(history, res.sources))
     return res
 
 
@@ -151,13 +185,23 @@ def write_outputs(res: RunResult, out_dir: str | Path, top: int, max_rows: int, 
         "rows_for_tracker": len(rows),
         "errors": res.errors,
         "unparsed_emails": res.unparsed_emails,
+        "problems": res.problems,
+        "sources": res.sources,
     }
     (out / "run-log.json").write_text(json.dumps(log, indent=1), encoding="utf-8")
     return log
 
 
 def summarize(res: RunResult, top: int) -> str:
-    lines = [f"Top {min(top, len(res.kept))} new roles today ({len(res.kept)} passed your skip rules)", ""]
+    lines = []
+    if res.problems:
+        lines.append(f"{len(res.problems)} source problem(s):")
+        lines += [f"- {x}" for x in res.problems]
+        lines.append("")
+    else:
+        ok = sum(1 for s in res.sources.values() if s.get("status") == "ok")
+        lines += [f"All {ok} sources worked.", ""]
+    lines += [f"Top {min(top, len(res.kept))} new roles today ({len(res.kept)} passed your skip rules)", ""]
     for i, p in enumerate(res.kept[:top], 1):
         pay = f", ${p.pay_min // 1000 if p.pay_min else '?'}K to ${p.pay_max // 1000}K" if p.pay_max else ""
         loc = p.location or "location not listed"

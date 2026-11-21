@@ -22,6 +22,7 @@ import re
 import urllib.parse
 from datetime import datetime, timezone
 
+from ..health import expect
 from ..models import Posting
 from ..pay import parse_pay
 from .http import get_json, html_to_text
@@ -34,6 +35,10 @@ HN_SEARCH = "https://hn.algolia.com/api/v1/search_by_date?tags=story,author_whoi
 HN_ITEM = "https://hn.algolia.com/api/v1/items/{id}"
 ADZUNA = "https://api.adzuna.com/v1/api/jobs/us/search/1"
 JOOBLE = "https://jooble.org/api/{key}"
+
+
+class NotConfigured(Exception):
+    """A keyed feed with no key set. Not an error: it's simply off."""
 
 
 def fetch(name: str, opts: dict, fetcher=get_json, env=None) -> list[Posting]:
@@ -58,7 +63,7 @@ def fetch(name: str, opts: dict, fetcher=get_json, env=None) -> list[Posting]:
 
 def parse_remotive(data: dict) -> list[Posting]:
     out = []
-    for job in data.get("jobs", []):
+    for job in expect(data, dict, "jobs", "Remotive"):
         desc = html_to_text(job.get("description"))
         p = Posting(
             source="Remotive",
@@ -77,7 +82,7 @@ def parse_remotive(data: dict) -> list[Posting]:
 
 def parse_remoteok(data: list) -> list[Posting]:
     out = []
-    for job in data or []:
+    for job in expect(data, list, None, "Remote OK"):
         if not isinstance(job, dict) or "position" not in job:
             continue  # the first item is Remote OK's legal notice
         desc = html_to_text(job.get("description"))
@@ -103,7 +108,7 @@ def parse_remoteok(data: list) -> list[Posting]:
 
 def parse_himalayas(data: dict) -> list[Posting]:
     out = []
-    for job in data.get("jobs", []):
+    for job in expect(data, dict, "jobs", "Himalayas"):
         desc = html_to_text(job.get("description") or job.get("excerpt"))
         where = job.get("locationRestrictions") or []
         where = ", ".join(w if isinstance(w, str) else (w.get("name") or "") for w in where)
@@ -129,7 +134,7 @@ def parse_himalayas(data: dict) -> list[Posting]:
 
 def parse_jobicy(data: dict) -> list[Posting]:
     out = []
-    for job in data.get("jobs", []):
+    for job in expect(data, dict, "jobs", "Jobicy"):
         desc = html_to_text(job.get("jobDescription") or job.get("jobExcerpt"))
         p = Posting(
             source="Jobicy",
@@ -155,10 +160,11 @@ _LOC_WORDS = re.compile(r"remote|onsite|on-site|hybrid|nyc|new york|san francisc
 
 
 def fetch_hn(fetcher=get_json) -> list[Posting]:
-    hits = fetcher(HN_SEARCH).get("hits", [])
+    hits = expect(fetcher(HN_SEARCH), dict, "hits", "HN search")
     thread = next((h for h in hits if (h.get("title") or "").lower().startswith("ask hn: who is hiring")), None)
     if not thread:
-        return []
+        from ..health import ShapeError
+        raise ShapeError("HN search: no 'Ask HN: Who is hiring?' thread in the latest results")
     return parse_hn_thread(fetcher(HN_ITEM.format(id=thread["objectID"])))
 
 
@@ -167,7 +173,7 @@ def parse_hn_thread(item: dict) -> list[Posting]:
     'Company | Role(s) | Location | Remote | Pay'. One posting per comment,
     titled with the first segment that names a role."""
     out = []
-    for c in item.get("children") or []:
+    for c in expect(item, dict, "children", "HN thread"):
         text = html_to_text(c.get("text"))
         if not text or not c.get("id"):
             continue
@@ -197,7 +203,7 @@ def parse_hn_thread(item: dict) -> list[Posting]:
 def fetch_adzuna(opts: dict, fetcher, env) -> list[Posting]:
     app_id, app_key = env.get("ADZUNA_APP_ID"), env.get("ADZUNA_APP_KEY")
     if not (app_id and app_key):
-        return []
+        raise NotConfigured("ADZUNA_APP_ID and ADZUNA_APP_KEY not set")
     out = []
     for query in opts.get("queries", []):
         for where in opts.get("where", [""]):
@@ -215,7 +221,7 @@ def fetch_adzuna(opts: dict, fetcher, env) -> list[Posting]:
 
 def parse_adzuna(data: dict) -> list[Posting]:
     out = []
-    for job in data.get("results", []):
+    for job in expect(data, dict, "results", "Adzuna"):
         desc = html_to_text(job.get("description"))
         p = Posting(
             source="Adzuna",
@@ -237,7 +243,7 @@ def parse_adzuna(data: dict) -> list[Posting]:
 def fetch_jooble(opts: dict, fetcher, env) -> list[Posting]:
     key = env.get("JOOBLE_API_KEY")
     if not key:
-        return []
+        raise NotConfigured("JOOBLE_API_KEY not set")
     out = []
     for query in opts.get("queries", []):
         for where in opts.get("where", [""]):
@@ -248,7 +254,7 @@ def fetch_jooble(opts: dict, fetcher, env) -> list[Posting]:
 
 def parse_jooble(data: dict) -> list[Posting]:
     out = []
-    for job in data.get("jobs", []):
+    for job in expect(data, dict, "jobs", "Jooble"):
         desc = html_to_text(job.get("snippet"))
         p = Posting(
             source=f"Jooble ({job.get('source') or 'aggregated'})",

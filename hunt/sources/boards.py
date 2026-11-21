@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
+from ..health import expect
 from ..models import Posting
 from ..pay import parse_pay
 from .http import get_json, html_to_text
@@ -36,7 +37,7 @@ def fetch(platform: str, slug: str, company: str, fetcher=get_json) -> list[Post
 
 def parse_greenhouse(data: dict, company: str) -> list[Posting]:
     out = []
-    for job in data.get("jobs", []):
+    for job in expect(data, dict, "jobs", "Greenhouse"):
         desc = html_to_text(job.get("content"))
         p = Posting(
             source="Greenhouse",
@@ -54,7 +55,7 @@ def parse_greenhouse(data: dict, company: str) -> list[Posting]:
 
 def parse_lever(data: list, company: str) -> list[Posting]:
     out = []
-    for job in data or []:
+    for job in expect(data, list, None, "Lever"):
         cats = job.get("categories") or {}
         locs = cats.get("allLocations") or ([cats["location"]] if cats.get("location") else [])
         location = " / ".join(locs)
@@ -89,7 +90,7 @@ def parse_lever(data: list, company: str) -> list[Posting]:
 
 def parse_ashby(data: dict, company: str) -> list[Posting]:
     out = []
-    for job in data.get("jobs", []):
+    for job in expect(data, dict, "jobs", "Ashby"):
         if job.get("isListed") is False:
             continue
         locs = [job.get("location") or ""]
@@ -129,7 +130,7 @@ def parse_ashby(data: dict, company: str) -> list[Posting]:
 def parse_smartrecruiters(data: dict, company: str, slug: str) -> list[Posting]:
     """The list endpoint has no description; the run's review step reads the page."""
     out = []
-    for job in data.get("content", []):
+    for job in expect(data, dict, "content", "SmartRecruiters"):
         loc = job.get("location") or {}
         parts = [loc.get("city"), loc.get("region"), loc.get("country", "").upper() or None]
         location = ", ".join(x for x in parts if x)
@@ -148,7 +149,7 @@ def parse_smartrecruiters(data: dict, company: str, slug: str) -> list[Posting]:
 
 def parse_workable(data: dict, company: str) -> list[Posting]:
     out = []
-    for job in data.get("jobs", []):
+    for job in expect(data, dict, "jobs", "Workable"):
         parts = [job.get("city"), job.get("state"), job.get("country")]
         location = ", ".join(x for x in parts if x)
         if job.get("telecommuting") and "remote" not in location.lower():

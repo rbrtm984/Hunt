@@ -26,8 +26,13 @@ properly.
    biggest gap in one line (`hunt/score.py`, `profile/profile.toml`). Scam
    markers are skipped. The run's agent then rereads the top 15 against
    `profile/rubric.md` and adjusts.
-5. **Deliver.** Up to 15 rows appended to the tracker's Raw tab in its own
-   13 columns, Status "New (pipeline)", and a short top 5 message.
+5. **Check health.** Every source's count, errors and HTTP status go in the
+   run log. A source that errors, changes format, goes quiet when it usually
+   has postings, or returns broken postings is listed at the top of the report
+   (`hunt/health.py`, history in `state/health.json` on `hunt-state`).
+6. **Deliver.** Up to 15 rows appended to the tracker's Raw tab in its own
+   13 columns, Status "New (pipeline)", and a short top 5 message. Alert
+   emails it read get the Gmail label "Job alerts" and leave the inbox.
 
 The Python only reads public APIs and files and writes to `--out`. Gmail and
 the Google Sheet are handled by the scheduled Claude session through its

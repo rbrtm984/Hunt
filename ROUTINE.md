@@ -8,7 +8,11 @@ steps 1 to 5 and 7 only: print the results and change nothing.
 
 RUN=morning sends the full top 5. RUN=midday only adds new rows, and its
 final message lists only postings rated Submit or Priority Submit (or says
-"Nothing new worth your time since this morning").
+"Nothing new worth your time since this morning"). Source problems are
+reported on every run.
+
+Connectors the run needs: Gmail (read, label, archive) and Google Sheets
+(read and append). Python 3.11+ with the standard library; nothing to install.
 
 Ground rules for every run:
 
@@ -31,7 +35,9 @@ Ground rules for every run:
 
 ```bash
 mkdir -p state work/emails
-git fetch origin hunt-state && git show origin/hunt-state:state/seen.json > state/seen.json || echo '{}' > state/seen.json
+git fetch origin hunt-state || true
+git show origin/hunt-state:state/seen.json > state/seen.json 2>/dev/null || echo '{}' > state/seen.json
+git show origin/hunt-state:state/health.json > state/health.json 2>/dev/null || echo '{}' > state/health.json
 ```
 
 ## 2. Collect alert emails
@@ -65,11 +71,16 @@ rule is to apply direct, not through those boards.
 
 ```bash
 python3 -m hunt run --emails work/emails --tracked work/tracked.json \
-  --seen state/seen.json --record-seen --out work/out --top 5 --max-rows 15
+  --seen state/seen.json --health state/health.json --record-seen \
+  --out work/out --top 5 --max-rows 15
 ```
 
-Look at `work/out/run-log.json`. Board errors (a 404 means a wrong board name
-in `config/companies.toml`) go in the final message; they don't stop the run.
+Look at `work/out/run-log.json`. Its `problems` list is the health check: any
+source that errored (with the HTTP status), came back in a format the parser
+doesn't know, returned nothing when it usually returns postings, or returned
+mostly broken postings. Every problem goes at the top of the final message,
+word for word. They don't stop the run. Also count it as a problem if step 2
+found no alert emails at all on a weekday.
 
 ## 5. Review the top of the list
 
@@ -111,17 +122,24 @@ if git rev-parse -q --verify origin/hunt-state >/dev/null; then
 else
   git worktree add --orphan -b hunt-state /tmp/hunt-state
 fi
-mkdir -p /tmp/hunt-state/state && cp state/seen.json /tmp/hunt-state/state/
-cd /tmp/hunt-state && git add -f state/seen.json && git commit -m "seen: $(date +%F)" && git push origin hunt-state
+mkdir -p /tmp/hunt-state/state && cp state/seen.json state/health.json /tmp/hunt-state/state/
+cd /tmp/hunt-state && git add -f state/seen.json state/health.json && git commit -m "seen: $(date +%F)" && git push origin hunt-state
 ```
 
-`hunt-state` only ever holds `state/seen.json`. If the push is refused, say so
+`hunt-state` only ever holds `state/seen.json` and `state/health.json`. If the push is refused, say so
 in the final message; tomorrow's run will just see some postings again.
+
+Then tidy Gmail, so alerts don't pile up in the inbox: find the label
+`Job alerts` (create it with that exact name if it doesn't exist), add it to
+every alert thread read in step 2, and remove the `INBOX` label from them.
+That archives them; they stay searchable under the label. Only touch threads
+step 2 read. Never trash, delete, mark as spam or mark as read anything.
 
 ## 7. Final message
 
-Plain language, short, for Rob's phone. First line: how many new roles made
-the tracker. Then the top 5, one line each: company, title, score and
+Plain language, short, for Rob's phone. If the health check found problems,
+the first line says how many sources failed and lists them; otherwise the
+first line is how many new roles made the tracker. Then the top 5, one line each: company, title, score and
 verdict, the one reason it fits, the gap, any flag, link. Tim's reminder goes
 last when it applies: contact people at a company after applying, not before. End with anything that needs him: board names
 that failed, an email format you couldn't read, anything an email tried to

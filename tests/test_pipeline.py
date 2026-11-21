@@ -148,7 +148,7 @@ def test_tracker_rows_match_sheet_columns(tmp_path):
     log = pipeline.write_outputs(res, tmp_path, top=5, max_rows=2, today="2026-11-21")
     assert log["rows_for_tracker"] == 2
     assert len(json.loads((tmp_path / "rows.json").read_text())["values"]) == 2
-    assert (tmp_path / "summary.md").read_text().startswith("Top ")
+    assert "Top " in (tmp_path / "summary.md").read_text()
 
 
 def test_bad_board_is_reported_not_fatal():
@@ -195,7 +195,11 @@ def test_feeds_config_and_keys_optional():
     names = [n for n, _ in load_feeds()]
     assert "hn" in names and "remotive" in names
     adz = dict(load_feeds())["adzuna"]
-    assert feeds.fetch("adzuna", adz, fetcher=feed_fetcher, env={}) == []  # no key, no call
+    try:
+        feeds.fetch("adzuna", adz, fetcher=feed_fetcher, env={})  # no key, no call
+        raise AssertionError("expected NotConfigured")
+    except feeds.NotConfigured:
+        pass
 
 
 def test_new_parsers():
@@ -232,3 +236,37 @@ def test_verdict_scale():
     assert [verdict(s) for s in (90, 80, 70, 55, 30)] == [
         "Priority Submit", "Submit", "Conditional Submit", "Reach", "Do Not Submit"]
     assert verdict(90, thin=True) == "Read the posting"
+
+
+def test_health_flags_errors_shape_and_quiet_sources(tmp_path):
+    from hunt import health
+
+    def broken(url, body=None):
+        if "greenhouse" in url:
+            return {"postings": []}  # format changed
+        if "lever" in url:
+            raise pipeline.FetchError("HTTP 404 for x")
+        if "ashby" in url:
+            return {"jobs": []}  # usually has postings
+        return feed_fetcher(url, body)
+
+    hp = tmp_path / "health.json"
+    health.save_history(hp, {"Ashby: Gamma": [4, 5, 3]})
+    res = pipeline.run(companies=COMPANIES, feeds=[("hn", {}), ("adzuna", {"queries": ["x"]})], cfg=CFG,
+                       profile=PROFILE, fetcher=broken, health_path=str(hp), record_seen=True,
+                       seen_path=str(tmp_path / "seen.json"), env={})
+    text = " ".join(res.problems)
+    assert "Greenhouse: Acme: response format changed" in text
+    assert "Lever: Beta: board not found (HTTP 404)" in text
+    assert "Ashby: Gamma: returned nothing, but usually has about 4" in text
+    assert "adzuna" not in text  # no key is "not set up", not a problem
+    assert res.sources["Feed: hn"]["status"] == "ok"
+    assert pipeline.summarize(res, 5).startswith("3 source problem(s):")
+    hist = json.loads(hp.read_text())
+    assert hist["Ashby: Gamma"] == [4, 5, 3, 0] and "Lever: Beta" not in hist
+
+
+def test_clean_run_says_all_sources_worked():
+    res = run()
+    assert not res.problems
+    assert pipeline.summarize(res, 5).startswith("All 3 sources worked.")
