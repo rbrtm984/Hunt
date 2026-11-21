@@ -1,6 +1,6 @@
-"""Public job board APIs: Greenhouse, Lever and Ashby.
+"""Public job board APIs: Greenhouse, Lever, Ashby, SmartRecruiters and Workable.
 
-All three publish a company's open roles as unauthenticated JSON, so no
+All of them publish a company's open roles as unauthenticated JSON, so no
 logins or API keys are needed. Each function returns a list of Posting.
 """
 
@@ -15,6 +15,8 @@ from .http import get_json, html_to_text
 GREENHOUSE = "https://boards-api.greenhouse.io/v1/boards/{slug}/jobs?content=true"
 LEVER = "https://api.lever.co/v0/postings/{slug}?mode=json"
 ASHBY = "https://api.ashbyhq.com/posting-api/job-board/{slug}?includeCompensation=true"
+SMARTRECRUITERS = "https://api.smartrecruiters.com/v1/companies/{slug}/postings?limit=100"
+WORKABLE = "https://apply.workable.com/api/v1/widget/accounts/{slug}?details=true"
 
 
 def fetch(platform: str, slug: str, company: str, fetcher=get_json) -> list[Posting]:
@@ -25,6 +27,10 @@ def fetch(platform: str, slug: str, company: str, fetcher=get_json) -> list[Post
         return parse_lever(fetcher(LEVER.format(slug=slug)), company)
     if platform == "ashby":
         return parse_ashby(fetcher(ASHBY.format(slug=slug)), company)
+    if platform == "smartrecruiters":
+        return parse_smartrecruiters(fetcher(SMARTRECRUITERS.format(slug=slug)), company, slug)
+    if platform == "workable":
+        return parse_workable(fetcher(WORKABLE.format(slug=slug)), company)
     raise ValueError(f"unknown platform {platform!r}")
 
 
@@ -116,6 +122,48 @@ def parse_ashby(data: dict, company: str) -> list[Posting]:
             p.pay_min, p.pay_max, p.pay_currency = parse_pay(
                 (comp.get("compensationTierSummary") or "") + "\n" + desc
             )
+        out.append(p)
+    return out
+
+
+def parse_smartrecruiters(data: dict, company: str, slug: str) -> list[Posting]:
+    """The list endpoint has no description; the run's review step reads the page."""
+    out = []
+    for job in data.get("content", []):
+        loc = job.get("location") or {}
+        parts = [loc.get("city"), loc.get("region"), loc.get("country", "").upper() or None]
+        location = ", ".join(x for x in parts if x)
+        if loc.get("remote") and "remote" not in location.lower():
+            location = f"{location} (Remote)".strip()
+        out.append(Posting(
+            source="SmartRecruiters",
+            company=(job.get("company") or {}).get("name") or company,
+            title=(job.get("name") or "").strip(),
+            url=f"https://jobs.smartrecruiters.com/{slug}/{job.get('id')}",
+            location=location,
+            posted_at=_iso_date(job.get("releasedDate")),
+        ))
+    return out
+
+
+def parse_workable(data: dict, company: str) -> list[Posting]:
+    out = []
+    for job in data.get("jobs", []):
+        parts = [job.get("city"), job.get("state"), job.get("country")]
+        location = ", ".join(x for x in parts if x)
+        if job.get("telecommuting") and "remote" not in location.lower():
+            location = f"{location} (Remote)".strip()
+        desc = html_to_text(job.get("description"))
+        p = Posting(
+            source="Workable",
+            company=data.get("name") or company,
+            title=(job.get("title") or "").strip(),
+            url=job.get("url") or job.get("shortlink") or "",
+            location=location,
+            description=desc,
+            posted_at=_iso_date(job.get("published_on") or job.get("created_at")),
+        )
+        p.pay_min, p.pay_max, p.pay_currency = parse_pay(desc)
         out.append(p)
     return out
 

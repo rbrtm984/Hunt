@@ -112,8 +112,21 @@ def stack_check(p: Posting, cfg: dict, profile: dict) -> str:
     return ""
 
 
+def scam_check(p: Posting, cfg: dict) -> str:
+    """Tim's scam markers: asks for banking or personal details, fees, or pay that can't be real."""
+    sc = cfg.get("scam", {})
+    body = f"{p.title}\n{p.description}".lower()
+    for ph in sc.get("phrases", []):
+        if re.search(rf"(?<![a-z0-9]){re.escape(ph.lower())}(?![a-z0-9])", body):
+            return f"scam marker: {ph}"
+    ceiling = sc.get("unrealistic_pay_usd")
+    if ceiling and p.pay_max and (p.pay_currency or "USD") == "USD" and p.pay_max > ceiling:
+        return f"scam marker: pay up to ${p.pay_max:,}"
+    return ""
+
+
 def first_skip_reason(p: Posting, cfg: dict, profile: dict) -> str:
-    for check in (title_check, location_check, pay_check, staffing_check, text_check, seniority_check):
+    for check in (title_check, location_check, pay_check, staffing_check, scam_check, text_check, seniority_check):
         reason = check(p, cfg)
         if reason:
             return reason

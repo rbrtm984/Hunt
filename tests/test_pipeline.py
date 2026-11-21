@@ -162,3 +162,73 @@ def test_bad_board_is_reported_not_fatal():
     res = pipeline.run(companies=COMPANIES, cfg=CFG, profile=PROFILE, fetcher=flaky)
     assert any("Beta" in e for e in res.errors)
     assert res.kept
+
+
+# --- Phase 2: more sources and Tim's rules -------------------------------
+
+from hunt.config import load_feeds
+from hunt.score import verdict
+from hunt.sources import feeds
+
+FEEDS = FX / "feeds"
+
+
+def feed(name):
+    return json.loads((FEEDS / name).read_text())
+
+
+def feed_fetcher(url, body=None):
+    if "remoteok" in url:
+        return feed("remoteok.json")
+    if "remotive" in url:
+        return feed("remotive.json")
+    if "search_by_date" in url:
+        return {"hits": [{"objectID": "100", "title": "Ask HN: Who is hiring? (November 2026)"}]}
+    if "jobicy" in url:
+        return feed("jobicy.json")
+    if "items/100" in url:
+        return feed("hn_item.json")
+    raise AssertionError(url)
+
+
+def test_feeds_config_and_keys_optional():
+    names = [n for n, _ in load_feeds()]
+    assert "hn" in names and "remotive" in names
+    adz = dict(load_feeds())["adzuna"]
+    assert feeds.fetch("adzuna", adz, fetcher=feed_fetcher, env={}) == []  # no key, no call
+
+
+def test_new_parsers():
+    hn = feeds.parse_hn_thread(feed("hn_item.json"))
+    assert [p.company for p in hn] == ["Tessellate"]  # no-pipe and non-engineering comments dropped
+    assert hn[0].title == "Founding Full Stack Engineer" and hn[0].pay_max == 220000
+    assert "NYC" in hn[0].location
+    w = boards.parse_workable(feed("workable.json"), "x")[0]
+    assert (w.company, w.pay_max, w.location) == ("Quillbook", 185000, "New York, NY, United States")
+    s = boards.parse_smartrecruiters(feed("smartrecruiters.json"), "x", "MosaicHealth")[0]
+    assert s.url == "https://jobs.smartrecruiters.com/MosaicHealth/744000" and s.company == "Mosaic Health"
+    ok = feeds.parse_remoteok(feed("remoteok.json"))
+    assert len(ok) == 2 and ok[0].pay_max == 210000
+
+
+def test_tim_rules_flags_verdicts_and_scam():
+    res = pipeline.run(companies=[], feeds=[("remoteok", {}), ("remotive", {}), ("hn", {}), ("jobicy", {})],
+                       cfg=CFG, profile=PROFILE, fetcher=feed_fetcher)
+    kept = by_title_company(res.kept)
+    skipped = {p.company: p.skip_reason for p in res.skipped}
+    assert skipped["Payfast"].startswith("scam marker")
+    edu = kept[("Brightpath Learning", "Full Stack Engineer")]
+    assert "work authorization or sponsorship terms" in edu.flags
+    assert "says no AI-written applications" in edu.flags
+    hn = kept[("Tessellate", "Founding Full Stack Engineer")]
+    assert "hidden AI-detection instruction in the posting" in hn.flags
+    assert ("Jobicy Co", "Applied AI Engineer") in kept
+    assert all(p.verdict for p in res.kept)
+    row = to_row(edu, "2026-11-21")
+    assert row[11].startswith(edu.verdict + ". Gap:") and "Flags:" in row[11]
+
+
+def test_verdict_scale():
+    assert [verdict(s) for s in (90, 80, 70, 55, 30)] == [
+        "Priority Submit", "Submit", "Conditional Submit", "Reach", "Do Not Submit"]
+    assert verdict(90, thin=True) == "Read the posting"

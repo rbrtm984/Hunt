@@ -20,11 +20,16 @@ class FetchError(Exception):
     pass
 
 
-def get_json(url: str, timeout: float = 20.0, retries: int = 2):
+def get_json(url: str, timeout: float = 20.0, retries: int = 2, body: dict | None = None):
+    """GET a URL as JSON, or POST `body` as JSON when given (Jooble)."""
     last: Exception | None = None
+    data = json.dumps(body).encode() if body is not None else None
+    headers = {"User-Agent": USER_AGENT, "Accept": "application/json"}
+    if data is not None:
+        headers["Content-Type"] = "application/json"
     for attempt in range(retries + 1):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/json"})
+            req = urllib.request.Request(url, data=data, headers=headers)
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 return json.loads(resp.read().decode("utf-8"))
         except urllib.error.HTTPError as e:

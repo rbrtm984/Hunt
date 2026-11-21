@@ -25,6 +25,8 @@ class Posting:
     gap: str = ""
     why: str = ""
     skip_reason: str = ""
+    verdict: str = ""  # Tim's scale, from score.verdict
+    flags: list[str] = field(default_factory=list)  # work auth, AI-detection, no-AI policy
 
     @property
     def key(self) -> str:

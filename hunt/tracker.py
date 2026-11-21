@@ -41,9 +41,17 @@ def to_row(p: Posting, today: str | None = None) -> list[str]:
         "",
         "",
         STATUS_NEW,
-        f"Gap: {p.gap}",
+        comments(p),
         p.why,
     ]
+
+
+def comments(p: Posting) -> str:
+    """Column L: Tim's verdict, then the gap, then any flags."""
+    parts = [f"{p.verdict}." if p.verdict else "", f"Gap: {p.gap}."]
+    if p.flags:
+        parts.append("Flags: " + "; ".join(p.flags) + ".")
+    return " ".join(x for x in parts if x).replace("..", ".")
 
 
 def to_rows(postings: list[Posting], today: str | None = None) -> list[list[str]]:

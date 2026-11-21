@@ -13,8 +13,8 @@ from pathlib import Path
 from .config import Company
 from .filters import first_skip_reason
 from .models import Posting
-from .score import score
-from .sources import boards
+from .score import rank_key, score
+from .sources import boards, feeds as feedsrc
 from .sources.emails import load_email_folder
 from .sources.http import FetchError, get_json
 from .store import SeenStore, Tracked
@@ -55,9 +55,21 @@ def collect_boards(companies: list[Company], fetcher=get_json, workers: int = 6)
     return postings, errors
 
 
+def collect_feeds(feeds: list[tuple[str, dict]], fetcher=get_json) -> tuple[list[Posting], list[str]]:
+    postings: list[Posting] = []
+    errors: list[str] = []
+    for name, opts in feeds:
+        try:
+            postings += feedsrc.fetch(name, opts, fetcher=fetcher)
+        except (FetchError, ValueError, KeyError, TypeError, AttributeError) as e:
+            errors.append(f"feed {name}: {e}")
+    return postings, errors
+
+
 def run(
     *,
     companies: list[Company],
+    feeds: list[tuple[str, dict]] | None = None,
     cfg: dict,
     profile: dict,
     email_dir: str | None = None,
@@ -74,6 +86,10 @@ def run(
 
     if use_boards and companies:
         found, errs = collect_boards(companies, fetcher=fetcher)
+        collected += found
+        res.errors += errs
+    if use_boards and feeds:
+        found, errs = collect_feeds(feeds, fetcher=fetcher)
         collected += found
         res.errors += errs
     if email_dir:
@@ -105,7 +121,7 @@ def run(
                 p.why = (p.why + "; " if p.why else "") + "you've applied here before"
             res.kept.append(p)
 
-    res.kept.sort(key=lambda p: (-(p.score or 0), p.company.lower()))
+    res.kept.sort(key=rank_key)
     if record_seen:
         for p in res.kept + res.skipped:
             seen.add(p, today)
@@ -145,8 +161,10 @@ def summarize(res: RunResult, top: int) -> str:
     for i, p in enumerate(res.kept[:top], 1):
         pay = f", ${p.pay_min // 1000 if p.pay_min else '?'}K to ${p.pay_max // 1000}K" if p.pay_max else ""
         loc = p.location or "location not listed"
-        lines.append(f"{i}. {p.company}, {p.title} ({p.score}/100). {loc}{pay}.")
+        lines.append(f"{i}. {p.company}, {p.title} ({p.score}/100, {p.verdict}). {loc}{pay}.")
         lines.append(f"   Why: {p.why or 'title and stack fit'}. Gap: {p.gap}.")
+        if p.flags:
+            lines.append(f"   Flags: {'; '.join(p.flags)}.")
         lines.append(f"   {p.url}")
     if not res.kept:
         lines.append("Nothing new passed your rules today.")

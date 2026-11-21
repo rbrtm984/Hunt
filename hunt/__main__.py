@@ -16,7 +16,7 @@ import json
 import sys
 
 from . import pipeline
-from .config import load_companies, load_profile, load_search
+from .config import load_companies, load_feeds, load_profile, load_search
 from .sources import boards
 from .sources.http import FetchError
 
@@ -30,7 +30,9 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--tracked", help="CSV or JSON of company,title already in the tracker")
     r.add_argument("--seen", help="seen.json path (dedupe across days)")
     r.add_argument("--record-seen", action="store_true", help="update --seen with today's postings")
-    r.add_argument("--no-boards", action="store_true", help="skip Greenhouse/Lever/Ashby")
+    r.add_argument("--no-boards", action="store_true", help="skip every API: company boards and feeds")
+    r.add_argument("--no-feeds", action="store_true", help="skip the cross-company feeds (HN, Remotive, Adzuna...)")
+    r.add_argument("--feeds", help="feeds TOML (default config/feeds.toml)")
     r.add_argument("--companies", help="companies TOML (default config/companies.toml)")
     r.add_argument("--search", help="search rules TOML (default config/search.toml)")
     r.add_argument("--only", help="comma-separated company names to fetch, for testing")
@@ -53,8 +55,12 @@ def _run(args) -> int:
     if args.only:
         wanted = {x.strip().lower() for x in args.only.split(",")}
         companies = [c for c in companies if c.name.lower() in wanted]
+    feeds = [] if args.no_feeds else load_feeds(args.feeds)
+    if args.only:
+        feeds = [f for f in feeds if f[0] in wanted]
     res = pipeline.run(
         companies=companies,
+        feeds=feeds,
         cfg=load_search(args.search),
         profile=load_profile(),
         email_dir=args.emails,

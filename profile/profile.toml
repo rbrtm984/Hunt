@@ -37,6 +37,19 @@ domain_bonus = [
   "developer tools", "devtools",
 ]
 
+# Ownership and scope words (Tim's leadership and stakeholder scope dimension).
+scope_terms = [
+  "end-to-end", "end to end", "ownership", "own the", "small team", "early-stage", "early stage",
+  "0 to 1", "0-to-1", "zero to one", "autonomy", "independently", "ship fast", "founding",
+  "work directly with customers", "customer-facing", "cross-functional",
+]
+
+# Credentials Rob doesn't have that a posting may require (Tim's credentials dimension).
+credential_gaps = [
+  "master's degree required", "masters degree required", "ms in computer science required",
+  "phd required", "ph.d. required", "computer science degree required", "bs in computer science required",
+]
+
 # Title words and how well they fit the next role (out of 25).
 [title_weights]
 "agentic" = 25

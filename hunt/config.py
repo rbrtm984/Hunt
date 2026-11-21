@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parent.parent
 @dataclass
 class Company:
     name: str
-    platform: str  # greenhouse | lever | ashby
+    platform: str  # greenhouse | lever | ashby | smartrecruiters | workable
     slug: str
     tags: list[str]
 
@@ -33,3 +33,10 @@ def load_companies(path: str | Path | None = None) -> list[Company]:
 def load_profile(path: str | Path | None = None) -> dict:
     with open(path or ROOT / "profile" / "profile.toml", "rb") as f:
         return tomllib.load(f)
+
+
+def load_feeds(path: str | Path | None = None) -> list[tuple[str, dict]]:
+    """Enabled cross-company feeds as (name, options)."""
+    with open(path or ROOT / "config" / "feeds.toml", "rb") as f:
+        data = tomllib.load(f)
+    return [(name, opts) for name, opts in data.get("feed", {}).items() if opts.get("enabled", True)]

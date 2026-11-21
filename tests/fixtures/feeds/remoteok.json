@@ -1,0 +1,8 @@
+[{"legal": "API terms notice"},
+ {"id": "1", "date": "2026-11-20T10:00:00+00:00", "company": "Loopwork", "position": "Senior AI Engineer",
+  "tags": ["typescript", "llm", "node"], "location": "United States",
+  "description": "<p>Build agentic workflows with LLMs, MCP and tool use in TypeScript and Node. 3+ years of experience. Small team, end-to-end ownership.</p>",
+  "salary_min": 160000, "salary_max": 210000, "url": "https://remoteok.com/remote-jobs/1"},
+ {"id": "2", "date": "2026-11-20T10:00:00+00:00", "company": "Payfast", "position": "Software Engineer",
+  "tags": [], "location": "", "description": "<p>Send your bank account details and SSN to start. Training fee required.</p>",
+  "url": "https://remoteok.com/remote-jobs/2"}]

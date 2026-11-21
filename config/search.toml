@@ -77,3 +77,37 @@ agencies = [
 [stack_mismatch]
 # Skip when the description is mostly one of these and barely mentions Rob's stack.
 primary = ["java", "spring boot", "kotlin", "scala", "golang", "swift", "objective-c", "c#", ".net", "ruby on rails", "php"]
+
+[flags]
+# Tim's pre-scoring flags. These never skip a posting; they show up in the
+# tracker's Comments column so Rob sees them before he applies.
+work_auth = [
+  "sponsorship", "visa", "authorized to work", "work authorization", "h-1b", "h1b",
+  "green card", "must reside", "must be located in", "residency requirement",
+]
+clearance = [
+  "us citizen", "u.s. citizen", "citizenship is required", "security clearance",
+  "secret clearance", "ts/sci", "public trust", "itar",
+]
+no_ai_policy = [
+  "do not use ai", "don't use ai", "without the use of ai", "no ai-generated",
+  "ai-generated applications", "ai generated applications", "written without ai",
+  "applications written by ai", "chatgpt-generated",
+]
+ai_detection = [
+  "if you are an ai", "if you're an ai", "if you are a language model", "if you are an llm",
+  "ai assistant reading this", "include the word", "mention the word", "start your answer with",
+  "ignore previous instructions", "ignore all previous",
+]
+essays = ["essay question", "short answer questions", "in 300 words", "in 500 words", "cover letter question"]
+
+[scam]
+# Tim: flag scam markers and don't analyze. Any of these skips the posting.
+phrases = [
+  "bank account details", "routing number", "social security number", "ssn",
+  "purchase equipment", "buy your own equipment and be reimbursed", "send a check",
+  "pay for training", "training fee", "registration fee", "telegram", "whatsapp interview",
+  "interview via google hangouts chat", "cash app", "zelle",
+]
+# A posted ceiling above this (USD a year) for a non-senior IC role is treated as unrealistic.
+unrealistic_pay_usd = 900000
