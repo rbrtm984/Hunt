@@ -43,6 +43,38 @@ Early runs matter: about 41% of applications arrive in a posting's first two
 days, and Monday and Tuesday are the busiest. HN's thread mostly fills in the
 first week of each month.
 
+### The `hunt` cloud environment
+
+A personal Claude Code cloud environment named `hunt`, for this repo, with
+custom network access limited to these hosts (package registries and MCP
+servers left on):
+
+```
+boards-api.greenhouse.io
+boards.greenhouse.io
+job-boards.greenhouse.io
+api.lever.co
+jobs.lever.co
+api.ashbyhq.com
+jobs.ashbyhq.com
+api.smartrecruiters.com
+jobs.smartrecruiters.com
+apply.workable.com
+hn.algolia.com
+remotive.com
+remoteok.com
+himalayas.app
+jobicy.com
+api.adzuna.com
+www.workatastartup.com
+```
+
+The first set are the APIs; the job-page hosts let the review step read a
+posting that came in with no description. Adzuna's free key, if used, goes
+in as the environment's secrets ADZUNA_APP_ID and ADZUNA_APP_KEY, never in
+this repo. No LinkedIn, Indeed or other board that bars automated access is
+on the list.
+
 ## Ideas borrowed from other projects
 
 - [career-ops](https://github.com/santifer/career-ops): a posting-legitimacy
