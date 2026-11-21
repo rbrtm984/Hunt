@@ -1,0 +1,164 @@
+import json
+from pathlib import Path
+
+from hunt import pipeline
+from hunt.config import Company, load_companies, load_profile, load_search
+from hunt.filters import years_required
+from hunt.pay import parse_pay
+from hunt.sources import boards
+from hunt.sources.emails import parse_yc_digest
+from hunt.tracker import HEADERS, to_row
+
+FX = Path(__file__).parent / "fixtures"
+CFG = load_search()
+PROFILE = load_profile()
+
+
+def fixture(name):
+    return json.loads((FX / name).read_text())
+
+
+def fake_fetcher(url):
+    if "greenhouse" in url:
+        return fixture("greenhouse.json")
+    if "lever" in url:
+        return fixture("lever.json")
+    if "ashby" in url:
+        return fixture("ashby.json")
+    raise AssertionError(url)
+
+
+COMPANIES = [
+    Company("Acme", "greenhouse", "acme", []),
+    Company("Beta", "lever", "beta", []),
+    Company("Gamma", "ashby", "gamma", []),
+]
+
+
+def run(**kw):
+    return pipeline.run(companies=COMPANIES, cfg=CFG, profile=PROFILE, fetcher=fake_fetcher, **kw)
+
+
+def by_title_company(postings):
+    return {(p.company, p.title): p for p in postings}
+
+
+def test_config_files_load():
+    assert len(load_companies()) > 20
+    assert CFG["pay"]["floor_usd"] == 150000
+
+
+def test_parse_pay():
+    assert parse_pay("$150K - $200K / 0.1%") == (150000, 200000, "USD")
+    assert parse_pay("Salary range: $160,000 - $210,000 USD") == (160000, 210000, "USD")
+    assert parse_pay("₹7M - ₹13M INR / 0.25%") == (7000000, 13000000, "INR")
+    assert parse_pay("3-5 years of experience") == (None, None, None)
+    assert parse_pay("$60 - $80/hr") == (124800, 166400, "USD")
+
+
+def test_years_required():
+    assert years_required("2+ years of experience building software") == 2
+    assert years_required("8+ years of experience required") == 8
+    assert years_required("We have 10 years in business") is None
+
+
+def test_board_parsers_shapes():
+    gh = boards.parse_greenhouse(fixture("greenhouse.json"), "Acme")
+    assert gh[0].pay_max == 210000 and gh[0].location == "New York, NY"
+    assert "agentic workflows" in gh[0].description and "<p>" not in gh[0].description
+    lv = boards.parse_lever(fixture("lever.json"), "Beta")
+    assert lv[0].pay_min == 150000 and "Remote" in lv[0].location and "MCP" in lv[0].description
+    ab = boards.parse_ashby(fixture("ashby.json"), "Gamma")
+    assert len(ab) == 2  # unlisted job dropped
+    assert ab[0].pay_max == 185000 and "Remote - US" in ab[0].location
+
+
+def test_skip_rules():
+    res = run()
+    skipped = {(p.company, p.title): p.skip_reason for p in res.skipped}
+    kept = by_title_company(res.kept)
+    assert ("Acme", "Applied AI Engineer") in kept
+    assert ("Beta", "Forward Deployed Engineer") in kept
+    assert ("Gamma", "AI Engineer, Product") in kept
+    assert skipped[("Acme", "Staff Software Engineer, Platform")].startswith("title")
+    assert skipped[("Gamma", "Software Engineer")].startswith("pay")
+    assert skipped[("Beta", "Software Engineer")].startswith("PERM")
+    assert skipped[("Acme", "Software Engineer, Backend")].startswith("stack")
+    # The two "Full Stack Engineer" roles at Acme share a key, so only the first
+    # (London) is judged in one run; it's dropped on location.
+    assert skipped[("Acme", "Full Stack Engineer")].startswith("location")
+    assert skipped[("Beta", "Full Stack Engineer")].startswith("seniority")
+
+
+def test_onsite_rule():
+    from hunt.filters import first_skip_reason
+    from hunt.models import Posting
+    p = Posting("Greenhouse", "Acme", "Full Stack Engineer", "u", "New York, NY",
+                "This role is 5 days a week in the office. TypeScript, React.")
+    assert first_skip_reason(p, CFG, PROFILE).startswith("fully onsite")
+
+
+def test_scores_rank_ai_roles_first():
+    res = run()
+    top = res.kept[0]
+    assert top.title in {"Applied AI Engineer", "AI Engineer, Product", "Forward Deployed Engineer"}
+    assert all(0 <= p.score <= 100 for p in res.kept)
+    assert all(p.gap for p in res.kept)
+    edu = by_title_company(res.kept)[("Gamma", "AI Engineer, Product")]
+    assert edu.score >= 75  # K-12 domain bonus on top of the AI title
+
+
+def test_yc_digest_and_tracker_dedupe(tmp_path):
+    jobs = parse_yc_digest((FX / "emails" / "yc-digest.txt").read_text())
+    assert [j.company for j in jobs] == ["Examplecorp", "Overseas AI", "Lowpay Medical", "Logistics Co", "Curri"]
+    assert jobs[0].tags == ["Next.js", "LLMs", "AI Agents"] and jobs[0].pay_max == 250000
+    res = pipeline.run(companies=[], cfg=CFG, profile=PROFILE, use_boards=False,
+                       email_dir=str(FX / "emails"), tracked_path=str(FX / "tracked.csv"))
+    kept = [p.company for p in res.kept]
+    skipped = {p.company: p.skip_reason for p in res.skipped}
+    assert kept == ["Examplecorp"]
+    assert skipped["Overseas AI"] == "pay: in INR"
+    assert skipped["Lowpay Medical"].startswith("pay: tops out")
+    assert skipped["Logistics Co"].startswith("title")
+    assert res.already_tracked == 1  # Curri is already in the tracker
+
+
+def test_seen_store_dedupes_across_days(tmp_path):
+    seen = tmp_path / "seen.json"
+    first = run(seen_path=str(seen), record_seen=True, today="2026-11-20")
+    assert first.kept and seen.exists()
+    second = run(seen_path=str(seen), record_seen=True, today="2026-11-21")
+    assert second.kept == [] and second.skipped == []
+    assert second.already_seen == len(first.kept) + len(first.skipped)
+
+
+def test_dry_run_does_not_write_seen(tmp_path):
+    seen = tmp_path / "seen.json"
+    run(seen_path=str(seen))
+    assert not seen.exists()
+
+
+def test_tracker_rows_match_sheet_columns(tmp_path):
+    res = run()
+    row = to_row(res.kept[0], "2026-11-21")
+    assert len(row) == len(HEADERS) == 13
+    assert row[0] == "2026-11-21"
+    assert row[5].startswith('=HYPERLINK("https://') and row[5].endswith(',"Link")')
+    assert row[6].endswith("/100") and row[10] == "New (pipeline)"
+    log = pipeline.write_outputs(res, tmp_path, top=5, max_rows=2, today="2026-11-21")
+    assert log["rows_for_tracker"] == 2
+    assert len(json.loads((tmp_path / "rows.json").read_text())["values"]) == 2
+    assert (tmp_path / "summary.md").read_text().startswith("Top ")
+
+
+def test_bad_board_is_reported_not_fatal():
+    from hunt.sources.http import FetchError
+
+    def flaky(url):
+        if "lever" in url:
+            raise FetchError("HTTP 404")
+        return fake_fetcher(url)
+
+    res = pipeline.run(companies=COMPANIES, cfg=CFG, profile=PROFILE, fetcher=flaky)
+    assert any("Beta" in e for e in res.errors)
+    assert res.kept

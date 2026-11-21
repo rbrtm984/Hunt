@@ -1,0 +1,13 @@
+{"jobs": [
+ {"id": 1, "title": "Applied AI Engineer", "absolute_url": "https://boards.greenhouse.io/acme/jobs/1",
+  "location": {"name": "New York, NY"}, "first_published": "2026-11-19T10:00:00-05:00",
+  "content": "&lt;p&gt;Build agentic workflows with LLMs and Claude. TypeScript, Node, React, Python, Postgres, AWS. 2+ years of experience building software.&lt;/p&gt;&lt;p&gt;Salary range: $160,000 - $210,000 USD&lt;/p&gt;"},
+ {"id": 2, "title": "Staff Software Engineer, Platform", "absolute_url": "https://boards.greenhouse.io/acme/jobs/2",
+  "location": {"name": "Remote, US"}, "content": "&lt;p&gt;Go and Kubernetes.&lt;/p&gt;"},
+ {"id": 3, "title": "Full Stack Engineer", "absolute_url": "https://boards.greenhouse.io/acme/jobs/3",
+  "location": {"name": "London, UK"}, "content": "&lt;p&gt;React and Node.&lt;/p&gt;"},
+ {"id": 4, "title": "Software Engineer, Backend", "absolute_url": "https://boards.greenhouse.io/acme/jobs/4",
+  "location": {"name": "New York, NY"}, "content": "&lt;p&gt;Java, Spring Boot, Java services, Kotlin and more Java. Some JavaScript. $170K - $220K&lt;/p&gt;"},
+ {"id": 5, "title": "Full Stack Engineer", "absolute_url": "https://boards.greenhouse.io/acme/jobs/5",
+  "location": {"name": "New York, NY"}, "content": "&lt;p&gt;This role is 5 days a week in the office. TypeScript, React.&lt;/p&gt;"}
+]}

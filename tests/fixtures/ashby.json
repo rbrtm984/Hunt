@@ -1,0 +1,10 @@
+{"jobs": [
+ {"id": "x", "title": "AI Engineer, Product", "location": "New York", "secondaryLocations": [{"location": "Remote - US"}],
+  "isRemote": true, "workplaceType": "Hybrid", "jobUrl": "https://jobs.ashbyhq.com/gamma/x", "isListed": true,
+  "descriptionPlain": "Ship LLM features for K-12 schools and teachers. TypeScript, Next.js, Python, Postgres. Evals and prompt work.",
+  "publishedAt": "2026-11-20T12:00:00Z",
+  "compensation": {"compensationTierSummary": "$140K – $185K", "summaryComponents": [{"compensationType": "Salary", "interval": "1 YEAR", "currencyCode": "USD", "minValue": 140000, "maxValue": 185000}]}},
+ {"id": "y", "title": "Software Engineer", "location": "New York", "isRemote": false, "jobUrl": "https://jobs.ashbyhq.com/gamma/y",
+  "descriptionPlain": "Node and React.", "compensation": {"summaryComponents": [{"compensationType": "Salary", "interval": "1 YEAR", "currencyCode": "USD", "minValue": 110000, "maxValue": 135000}]}},
+ {"id": "z", "title": "Product Engineer", "location": "Remote", "isListed": false, "jobUrl": "https://jobs.ashbyhq.com/gamma/z", "descriptionPlain": "Hidden"}
+]}

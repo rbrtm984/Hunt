@@ -1,0 +1,61 @@
+# Rob's skills profile, condensed from his baseline resume.
+# The scorer counts these words in each posting. Keep them lowercase-friendly.
+
+years_experience = 2.5
+
+# Languages and frameworks he ships with every day.
+core_stack = [
+  "typescript", "javascript", "node", "node.js", "react", "angular", "next.js", "vite",
+  "python", "fastapi", "express", "postgres", "postgresql", "mysql", "sql", "redis",
+  "aws", "lambda", "s3", "docker", "rest", "openapi", "tailwind", "rxjs", "zustand",
+  "tanstack", "vitest", "jest", "playwright", "oauth", "saml", "sso", "webhook",
+]
+
+# The AI and agentic work that's his strongest pitch.
+ai_terms = [
+  "agentic", "agents", "ai agent", "llm", "llms", "large language model", "claude",
+  "anthropic", "mcp", "model context protocol", "rag", "retrieval", "evals", "evaluation",
+  "prompt", "genai", "generative ai", "gemini", "openai", "ai-native", "ai native",
+  "copilot", "tool use", "workflow automation", "ai products", "applied ai",
+]
+
+# Things that show up in postings and aren't on his resume. The scorer names
+# the biggest one as the gap.
+not_on_resume = [
+  "kubernetes", "k8s", "terraform", "golang", "rust", "c++", "java", "kotlin", "scala",
+  "graphql", "kafka", "spark", "airflow", "pytorch", "tensorflow", "model training",
+  "fine-tuning", "fine tuning", "machine learning engineer", "computer vision", "cuda",
+  "elixir", "ruby", "rails", "django", "flutter", "react native", "swift", "c#", ".net",
+  "snowflake", "dbt", "clickhouse", "gcp", "azure",
+]
+
+# Domains where his background is a plus.
+domain_bonus = [
+  "edtech", "education", "k-12", "k12", "students", "teachers", "schools",
+  "learning platform", "e-learning", "online learning", "learners",
+  "identity", "authentication", "single sign-on", "sso", "access management",
+  "developer tools", "devtools",
+]
+
+# Title words and how well they fit the next role (out of 25).
+[title_weights]
+"agentic" = 25
+"agent engineer" = 25
+"applied ai" = 25
+"ai engineer" = 24
+"forward deployed" = 23
+"ai product" = 22
+"llm" = 22
+"deployment engineer" = 20
+"full stack" = 18
+"full-stack" = 18
+"fullstack" = 18
+"product engineer" = 17
+"founding engineer" = 15
+"member of technical staff" = 15
+"software engineer" = 13
+"software developer" = 12
+"frontend" = 11
+"front-end" = 11
+"founding" = 14
+"backend engineer" = 11
