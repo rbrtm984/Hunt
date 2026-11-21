@@ -36,7 +36,7 @@ slug = "elevenlabs"
 [[company]]
 name = "Hebbia"
 platform = "ashby"
-slug = "hebbia"
+slug = "hebbia-ai"
 
 [[company]]
 name = "Harvey"
@@ -157,7 +157,7 @@ slug = "mercury"
 
 [[company]]
 name = "Plaid"
-platform = "lever"
+platform = "ashby"
 slug = "plaid"
 
 [[company]]
@@ -193,7 +193,7 @@ tags = ["edtech"]
 
 [[company]]
 name = "Newsela"
-platform = "lever"
+platform = "greenhouse"
 slug = "newsela"
 tags = ["edtech"]
 
@@ -205,6 +205,6 @@ tags = ["edtech", "identity"]
 
 [[company]]
 name = "brightwheel"
-platform = "greenhouse"
+platform = "lever"
 slug = "brightwheel"
 tags = ["edtech"]
