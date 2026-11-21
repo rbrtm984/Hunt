@@ -1,0 +1,113 @@
+# What the pipeline looks for and what it throws out.
+# Edit freely: every rule here is plain text matching, case-insensitive.
+
+[titles]
+# A posting must match at least one of these in its title.
+include = [
+  "agentic", "agent engineer", "ai engineer", "applied ai", "ai product",
+  "llm", "forward deployed", "deployment engineer", "solutions engineer, ai",
+  "full stack", "full-stack", "fullstack", "product engineer",
+  "software engineer", "software developer", "founding engineer",
+  "member of technical staff", "founding", "frontend", "front-end",
+  "backend engineer", "engineer - full", "engineer, full",
+]
+# Titles thrown out even when they match above.
+exclude = [
+  "manager", "director", "head of", "vp ", "vice president", "principal",
+  "staff engineer", "staff software", "staff ai", "staff full", "staff product",
+  "staff backend", "staff frontend", "staff machine", "distinguished", "architect", "intern", "co-op", "apprentice",
+  "recruit", "sales", "account exec", "designer", "data scientist",
+  "research scientist", "researcher", "phd",
+  "android", "ios", "mobile", "java ", "java,", "(java)", "kotlin", "scala",
+  "golang", " go ", "(go)", "go engineer", "embedded", "firmware", "hardware",
+  "security engineer", "site reliability", "sre", "devops", "network engineer",
+  "qa ", "test engineer", "sdet", "gtm engineer", "support engineer",
+]
+
+[location]
+# Keep a posting if its location mentions one of these...
+nyc = ["new york", "nyc", "brooklyn", "manhattan", "queens", "jersey city", "hoboken", "long island"]
+remote = ["remote", "anywhere", "distributed"]
+# ...unless a remote posting is tied to somewhere outside the US.
+non_us = [
+  "emea", "europe", "uk", "united kingdom", "london", "canada", "toronto", "vancouver",
+  "india", "bangalore", "bengaluru", "mexico", "brazil", "latam", "apac", "australia",
+  "germany", "berlin", "france", "paris", "spain", "madrid", "poland", "ireland", "dublin",
+  "netherlands", "amsterdam", "israel", "tel aviv", "singapore", "japan", "tokyo",
+  "argentina", "colombia", "portugal", "lisbon", "switzerland", "zurich", "sweden",
+]
+# Postings with no location at all (common in email digests) are kept and flagged.
+keep_unknown = true
+
+[pay]
+# Skip when the top of the posted range is under this (USD per year).
+floor_usd = 150000
+# Postings paid in another currency are almost always outside the US.
+skip_non_usd = true
+
+[seniority]
+# Rob has about two and a half years. A posting that asks for this many years or more is skipped.
+skip_if_years_at_least = 7
+# This many years or more is kept but marked down and named as the gap.
+penalize_if_years_at_least = 5
+
+[skip_text]
+# Any of these phrases in the description skips the posting.
+perm = ["perm labor certification", "labor certification", "perm process", "this position is subject to perm"]
+onsite = [
+  "5 days a week in office", "5 days a week in the office", "five days a week in office",
+  "five days a week in the office", "5 days in office", "five days in office",
+  "fully onsite", "fully on-site", "100% onsite", "100% on-site", "onsite 5 days",
+  "on-site 5 days", "in-office 5 days", "in office 5 days", "[workplace: onsite]",
+]
+staffing = [
+  "on behalf of our client", "our client is seeking", "our client is looking",
+  "my client is", "we are a staffing", "contract-to-hire through", "w2 contract",
+  "c2c", "corp to corp",
+]
+
+[staffing]
+# Company names treated as staffing agencies. They're skipped unless a client is named.
+agencies = [
+  "robert half", "teksystems", "insight global", "kforce", "randstad", "adecco",
+  "cybercoders", "jobot", "motion recruitment", "apex systems", "dice", "hired",
+  "vaco", "aerotek", "harnham", "hays", "beacon hill", "stellar search",
+]
+
+[stack_mismatch]
+# Skip when the description is mostly one of these and barely mentions Rob's stack.
+primary = ["java", "spring boot", "kotlin", "scala", "golang", "swift", "objective-c", "c#", ".net", "ruby on rails", "php"]
+
+[flags]
+# Tim's pre-scoring flags. These never skip a posting; they show up in the
+# tracker's Comments column so Rob sees them before he applies.
+work_auth = [
+  "sponsorship", "visa", "authorized to work", "work authorization", "h-1b", "h1b",
+  "green card", "must reside", "must be located in", "residency requirement",
+]
+clearance = [
+  "us citizen", "u.s. citizen", "citizenship is required", "security clearance",
+  "secret clearance", "ts/sci", "public trust", "itar",
+]
+no_ai_policy = [
+  "do not use ai", "don't use ai", "without the use of ai", "no ai-generated",
+  "ai-generated applications", "ai generated applications", "written without ai",
+  "applications written by ai", "chatgpt-generated",
+]
+ai_detection = [
+  "if you are an ai", "if you're an ai", "if you are a language model", "if you are an llm",
+  "ai assistant reading this", "include the word", "mention the word", "start your answer with",
+  "ignore previous instructions", "ignore all previous",
+]
+essays = ["essay question", "short answer questions", "in 300 words", "in 500 words", "cover letter question"]
+
+[scam]
+# Tim: flag scam markers and don't analyze. Any of these skips the posting.
+phrases = [
+  "bank account details", "routing number", "social security number", "ssn",
+  "purchase equipment", "buy your own equipment and be reimbursed", "send a check",
+  "pay for training", "training fee", "registration fee", "telegram", "whatsapp interview",
+  "interview via google hangouts chat", "cash app", "zelle",
+]
+# A posted ceiling above this (USD a year) for a non-senior IC role is treated as unrealistic.
+unrealistic_pay_usd = 900000

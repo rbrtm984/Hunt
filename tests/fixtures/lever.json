@@ -1,0 +1,13 @@
+[
+ {"id": "a", "text": "Forward Deployed Engineer", "hostedUrl": "https://jobs.lever.co/beta/a",
+  "categories": {"location": "Remote", "allLocations": ["Remote"]}, "workplaceType": "remote",
+  "descriptionPlain": "Work with customers to deploy AI agents. Python, TypeScript, SQL. 3+ years of professional experience.",
+  "lists": [{"text": "You have", "content": "&lt;li&gt;MCP and RAG experience&lt;/li&gt;"}],
+  "salaryRange": {"min": 150000, "max": 190000, "currency": "USD", "interval": "per-year-salary"}, "createdAt": 1795000000000},
+ {"id": "b", "text": "Full Stack Engineer", "hostedUrl": "https://jobs.lever.co/beta/b",
+  "categories": {"location": "New York"}, "descriptionPlain": "React, Node. 8+ years of experience required.",
+  "lists": [], "createdAt": 1795000000000},
+ {"id": "c", "text": "Software Engineer", "hostedUrl": "https://jobs.lever.co/beta/c",
+  "categories": {"location": "New York"}, "descriptionPlain": "Node, React. We will sponsor via the PERM labor certification process.",
+  "lists": []}
+]

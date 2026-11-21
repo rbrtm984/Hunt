@@ -1,0 +1,210 @@
+# Companies whose public job boards the pipeline reads every morning.
+#
+# platform: greenhouse | lever | ashby
+# slug:     the board name in the company's careers URL, e.g.
+#             boards.greenhouse.io/<slug>   jobs.lever.co/<slug>   jobs.ashbyhq.com/<slug>
+# enabled:  set false to pause one without deleting it.
+#
+# This starting list is a guess: AI-forward companies with NYC or remote US
+# roles, a few edtech and K-12 identity companies, and a few you've applied to
+# before. Board names haven't been checked yet, because this build ran in a
+# session that couldn't reach the job board APIs. Run
+#     python -m hunt check-companies
+# once from a session that can, and fix or disable any that fail.
+
+# ---- AI labs and AI product companies ----
+[[company]]
+name = "Anthropic"
+platform = "greenhouse"
+slug = "anthropic"
+
+[[company]]
+name = "Cohere"
+platform = "ashby"
+slug = "cohere"
+
+[[company]]
+name = "Perplexity"
+platform = "ashby"
+slug = "perplexity"
+
+[[company]]
+name = "ElevenLabs"
+platform = "ashby"
+slug = "elevenlabs"
+
+[[company]]
+name = "Hebbia"
+platform = "ashby"
+slug = "hebbia"
+
+[[company]]
+name = "Harvey"
+platform = "ashby"
+slug = "harvey"
+
+[[company]]
+name = "Sierra"
+platform = "ashby"
+slug = "sierra"
+
+[[company]]
+name = "Decagon"
+platform = "ashby"
+slug = "decagon"
+
+[[company]]
+name = "Glean"
+platform = "greenhouse"
+slug = "gleanwork"
+
+[[company]]
+name = "Writer"
+platform = "ashby"
+slug = "writer"
+
+[[company]]
+name = "Runway"
+platform = "greenhouse"
+slug = "runwayml"
+
+[[company]]
+name = "Abridge"
+platform = "ashby"
+slug = "abridge"
+
+[[company]]
+name = "Baseten"
+platform = "ashby"
+slug = "baseten"
+
+[[company]]
+name = "LangChain"
+platform = "ashby"
+slug = "langchain"
+
+[[company]]
+name = "Modal"
+platform = "ashby"
+slug = "modal"
+
+[[company]]
+name = "Clay"
+platform = "ashby"
+slug = "claylabs"
+
+# ---- Developer tools and platforms ----
+[[company]]
+name = "Vercel"
+platform = "greenhouse"
+slug = "vercel"
+
+[[company]]
+name = "Supabase"
+platform = "ashby"
+slug = "supabase"
+
+[[company]]
+name = "Linear"
+platform = "ashby"
+slug = "linear"
+
+[[company]]
+name = "Notion"
+platform = "ashby"
+slug = "notion"
+
+[[company]]
+name = "Replit"
+platform = "ashby"
+slug = "replit"
+
+[[company]]
+name = "Hex"
+platform = "ashby"
+slug = "hex"
+
+[[company]]
+name = "Retool"
+platform = "greenhouse"
+slug = "retool"
+
+[[company]]
+name = "Datadog"
+platform = "greenhouse"
+slug = "datadog"
+
+[[company]]
+name = "MongoDB"
+platform = "greenhouse"
+slug = "mongodb"
+
+[[company]]
+name = "Hightouch"
+platform = "ashby"
+slug = "hightouch"
+
+# ---- NYC fintech and product companies ----
+[[company]]
+name = "Ramp"
+platform = "ashby"
+slug = "ramp"
+
+[[company]]
+name = "Mercury"
+platform = "ashby"
+slug = "mercury"
+
+[[company]]
+name = "Plaid"
+platform = "lever"
+slug = "plaid"
+
+[[company]]
+name = "Palantir"
+platform = "lever"
+slug = "palantir"
+tags = ["forward deployed"]
+
+# ---- Edtech and K-12 ----
+[[company]]
+name = "Duolingo"
+platform = "greenhouse"
+slug = "duolingo"
+tags = ["edtech"]
+
+[[company]]
+name = "Khan Academy"
+platform = "greenhouse"
+slug = "khanacademy"
+tags = ["edtech"]
+
+[[company]]
+name = "Coursera"
+platform = "greenhouse"
+slug = "coursera"
+tags = ["edtech"]
+
+[[company]]
+name = "Quizlet"
+platform = "greenhouse"
+slug = "quizlet"
+tags = ["edtech"]
+
+[[company]]
+name = "Newsela"
+platform = "lever"
+slug = "newsela"
+tags = ["edtech"]
+
+[[company]]
+name = "Clever"
+platform = "greenhouse"
+slug = "clever"
+tags = ["edtech", "identity"]
+
+[[company]]
+name = "brightwheel"
+platform = "greenhouse"
+slug = "brightwheel"
+tags = ["edtech"]

@@ -1,0 +1,33 @@
+# Cross-company feeds (hunt/sources/feeds.py). Each is one or two requests a
+# day and covers many employers. Turn one off with enabled = false.
+#
+# What isn't here, on purpose: LinkedIn, Indeed, Dice, Built In, Wellfound,
+# Glassdoor and ZipRecruiter all bar automated access in their terms. They
+# come in only through their own job alert emails (ROUTINE.md step 2).
+
+[feed.hn]
+enabled = true      # monthly "Ask HN: Who is hiring?" thread, via Algolia's public API
+
+[feed.remotive]
+enabled = true      # remote software jobs; their terms ask for a few calls a day at most
+
+[feed.remoteok]
+enabled = true      # remote jobs; credit Remote OK and link back
+
+[feed.himalayas]
+enabled = true      # remote jobs with posted pay
+
+[feed.jobicy]
+enabled = true      # remote jobs, US filter; their terms: at most hourly, credit and link back
+
+[feed.adzuna]
+enabled = true      # aggregator of many sites' listings (the legal route to Indeed/Dice-style coverage). Needs ADZUNA_APP_ID and ADZUNA_APP_KEY; skipped until set. Credit "The Adzuna API".
+queries = ["agentic engineer", "ai engineer", "full stack engineer typescript", "applied ai engineer"]
+where = ["New York", ""]
+max_days_old = 3
+salary_min = 150000
+
+[feed.jooble]
+enabled = false     # aggregator; needs JOOBLE_API_KEY and a sign-up form. Lowest yield in one 3,570-listing comparison, so off.
+queries = ["ai engineer", "full stack engineer"]
+where = ["New York", "Remote"]
