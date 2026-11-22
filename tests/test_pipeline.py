@@ -270,3 +270,146 @@ def test_clean_run_says_all_sources_worked():
     res = run()
     assert not res.problems
     assert pipeline.summarize(res, 5).startswith("All 3 sources worked.")
+
+
+# --- Liveness, scoring retry, Google Jobs, HN thread age ---------------------
+
+from datetime import datetime, timezone
+
+from hunt import liveness
+from hunt.models import Posting
+from hunt.sources.http import FetchError, redact
+
+
+def test_liveness_reads_pages_without_false_alarms():
+    url = "https://jobs.lever.co/acme/1234-abcd"
+    v = liveness.verdict_from_page
+    assert v(url, 404, url, "")[0] == "closed"
+    assert v(url, 200, "https://jobs.lever.co/acme", "<html>jobs</html>")[0] == "closed"
+    gh = "https://boards.greenhouse.io/acme/jobs/1"
+    assert v(gh, 200, "https://boards.greenhouse.io/acme?error=true", "")[0] == "closed"
+    assert v(url, 200, url, "<p>Sorry, this job is no longer available.</p>")[0] == "closed"
+    # A phrase that only sits in the page's JavaScript bundle is not a signal.
+    assert v(url, 200, url, '<script>t={closed:"This job is no longer available"}</script><h1>Engineer</h1>')[0] == "open"
+    assert v(url, 200, "https://jobs.lever.co/login", "")[0] == "unknown"
+    assert v(url, 503, url, "")[0] == "unknown"
+
+
+def test_liveness_skips_board_apis_and_barred_sites():
+    gh = Posting(source="Greenhouse", company="A", title="AI Engineer", url="https://boards.greenhouse.io/a/jobs/1")
+    li = Posting(source="LinkedIn alert", company="B", title="AI Engineer", url="https://www.linkedin.com/jobs/view/9")
+    hn = Posting(source="HN Who's Hiring", company="C", title="AI Engineer", url="https://news.ycombinator.com/item?id=1")
+    rm = Posting(source="Remotive", company="D", title="AI Engineer", url="https://remotive.com/jobs/1")
+    calls = []
+
+    def pages(url):
+        calls.append(url)
+        raise FetchError("host not on this environment's allowed list: remotive.com")
+
+    counts = liveness.check_all([gh, li, hn, rm], page_fetcher=pages)
+    assert calls == ["https://remotive.com/jobs/1"]
+    assert (gh.live, li.live, hn.live, rm.live) == ("open", "not checked", "not checked", "unknown")
+    assert counts["unknown"] == 1
+
+
+def feed_run(**kw):
+    return pipeline.run(companies=[], feeds=[("remotive", {}), ("remoteok", {})], cfg=CFG, profile=PROFILE,
+                        fetcher=feed_fetcher, **kw)
+
+
+def test_closed_postings_are_dropped_before_scoring(tmp_path):
+    checked = []
+
+    def pages(url):
+        checked.append(url)
+        if url.endswith("/x-9"):  # Brightpath's Remotive posting has closed
+            return 404, url, ""
+        return 200, url, "<h1>Open role</h1>"
+
+    seen_path = tmp_path / "seen.json"
+    res = feed_run(page_fetcher=pages, seen_path=str(seen_path), record_seen=True)
+    assert [p.company for p in res.closed] == ["Brightpath Learning"]
+    assert res.closed[0].score is None and res.closed[0].skip_reason.startswith("closed: ")
+    assert "Brightpath Learning" not in {p.company for p in res.kept}
+    log = pipeline.write_outputs(res, tmp_path / "out", 5, 15)
+    assert log["dropped_as_closed"] == 1 and "returns 404" in log["closed"][0]
+    # Remembered, so the next run neither checks nor scores it again.
+    checked.clear()
+    again = feed_run(page_fetcher=pages, seen_path=str(seen_path))
+    assert not any(u.endswith("/x-9") for u in checked) and not again.closed
+
+
+def test_scoring_failure_is_reported_not_zero(monkeypatch, tmp_path):
+    real = pipeline.score
+    tries = {"n": 0}
+
+    def flaky(p, cfg, profile):
+        if p.company == "Brightpath Learning":
+            tries["n"] += 1
+            raise RuntimeError("model timed out")
+        return real(p, cfg, profile)
+
+    monkeypatch.setattr(pipeline, "score", flaky)
+    monkeypatch.setattr(pipeline.time, "sleep", lambda s: None)
+    res = feed_run()
+    assert [p.company for p in res.score_errors] == ["Brightpath Learning"]
+    assert tries["n"] == 3 * len(res.score_errors)  # three tries each
+    for p in res.score_errors:
+        assert p.score is None and "model timed out" in p.score_error
+        assert p not in res.kept
+    log = pipeline.write_outputs(res, tmp_path / "out", 5, 15)
+    assert log["score_errors"] and "couldn't be scored" in pipeline.summarize(res, 5)
+
+
+def test_google_jobs_prefers_employer_link_and_is_capped():
+    jobs = feeds.parse_serpapi(feed("serpapi.json"))
+    nw, co = jobs
+    assert nw.url == "https://jobs.northwind.example/careers/42"  # not the LinkedIn link
+    assert (nw.pay_min, nw.pay_max) == (170000, 210000)
+    assert co.location == "Anywhere (Remote)" and co.url.startswith("https://www.indeed.com/")
+    calls = []
+
+    def fetcher(url, body=None):
+        calls.append(url)
+        return feed("serpapi.json")
+
+    opts = {"queries": [f"q{i}" for i in range(8)], "where": ["New York", ""], "max_searches": 50}
+    feeds.fetch("serpapi", opts, fetcher=fetcher, env={"SERPAPI_API_KEY": "sk_test_123"})
+    assert len(calls) == feeds.SERPAPI_MAX_SEARCHES == 5
+    try:
+        feeds.fetch("serpapi", opts, fetcher=fetcher, env={})
+        raise AssertionError("expected NotConfigured")
+    except feeds.NotConfigured:
+        pass
+    assert feeds.parse_serpapi({"error": "Google hasn't returned any results for this query."}) == []
+
+
+def test_api_keys_never_reach_logs():
+    msg = redact("HTTP 401 for https://serpapi.com/search.json?engine=google_jobs&q=ai&api_key=sk_live_SECRET")
+    assert "SECRET" not in msg and "api_key=[key]" in msg
+    assert "abc123" not in redact("HTTP 403 for https://jooble.org/api/abc123")
+    assert "SECRET" not in redact("https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=SECRET&app_key=SECRET")
+
+
+def test_hn_uses_only_this_months_thread():
+    old = {"hits": [{"objectID": "100", "title": "Ask HN: Who is hiring? (September 2026)",
+                     "created_at_i": int(datetime(2026, 9, 1, tzinfo=timezone.utc).timestamp())}]}
+    try:
+        feeds.fetch_hn(lambda url, body=None: old, now=datetime(2026, 11, 22, tzinfo=timezone.utc))
+        raise AssertionError("expected a stale-thread problem")
+    except Exception as e:  # noqa: BLE001
+        assert "this month's isn't up yet" in str(e)
+    fresh = {"hits": [dict(old["hits"][0], created_at_i=int(datetime(2026, 11, 2, tzinfo=timezone.utc).timestamp()))]}
+    got = feeds.fetch_hn(lambda url, body=None: fresh if "search_by_date" in url else feed("hn_item.json"),
+                         now=datetime(2026, 11, 22, tzinfo=timezone.utc))
+    assert got and all(p.source == "HN Who's Hiring" for p in got)
+
+
+def test_remote_abroad_is_not_mistaken_for_us():
+    from hunt.filters import location_check
+    eu = Posting(source="Ashby", company="Cohere", title="Engineer",
+                 url="x", location="Europe / Brussels / Munich / London (Remote)")
+    us = Posting(source="Ashby", company="Sayari", title="Engineer", url="x", location="Remote (USA)")
+    both = Posting(source="Ashby", company="Hex", title="Engineer", url="x", location="Remote - US / London")
+    assert location_check(eu, CFG).startswith("location: remote outside the US")
+    assert location_check(us, CFG) == "" and location_check(both, CFG) == ""

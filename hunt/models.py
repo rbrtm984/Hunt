@@ -27,6 +27,9 @@ class Posting:
     skip_reason: str = ""
     verdict: str = ""  # Tim's scale, from score.verdict
     flags: list[str] = field(default_factory=list)  # work auth, AI-detection, no-AI policy
+    live: str = ""  # liveness.py: open, closed, unknown or not checked
+    live_note: str = ""  # why it's unknown, when it is
+    score_error: str = ""  # set when scoring failed; the score is then None, never 0
 
     @property
     def key(self) -> str:

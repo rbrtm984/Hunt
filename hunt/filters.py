@@ -45,7 +45,8 @@ def location_check(p: Posting, cfg: dict) -> str:
     if in_nyc:
         return ""
     if remote:
-        us_hint = any(x in loc for x in ("us", "united states", "usa", "u.s.", "america", "north america"))
+        # Whole words only: "Brussels" and "Belarus" contain "us".
+        us_hint = bool(re.search(r"(?<![a-z])(us|usa|u\.s\.?|united states|america|north america)(?![a-z])", loc))
         if _has(loc, lc["non_us"]) and not us_hint:
             return f"location: remote outside the US ({p.location})"
         return ""

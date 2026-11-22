@@ -1,0 +1,29 @@
+{
+ "search_metadata": {"status": "Success"},
+ "jobs_results": [
+  {
+   "title": "Applied AI Engineer",
+   "company_name": "Northwind Labs",
+   "location": "New York, NY",
+   "via": "LinkedIn",
+   "description": "Build LLM agents in TypeScript and Python. Own features end to end on a small team. Work with Claude and OpenAI models, RAG, evals and tool use. React, Node, Postgres. 3+ years of experience. Salary $170,000 to $210,000.",
+   "detected_extensions": {"posted_at": "2 days ago", "salary": "170K–210K a year", "schedule_type": "Full-time"},
+   "apply_options": [
+    {"title": "LinkedIn", "link": "https://www.linkedin.com/jobs/view/123"},
+    {"title": "Northwind Labs Careers", "link": "https://jobs.northwind.example/careers/42"}
+   ],
+   "share_link": "https://www.google.com/search?ibp=htl;jobs#htivrt=jobs&htidocid=abc",
+   "job_id": "abc"
+  },
+  {
+   "title": "Full Stack Engineer",
+   "company_name": "Contoso",
+   "location": "Anywhere",
+   "via": "Indeed",
+   "description": "Remote role building React and Node apps.",
+   "detected_extensions": {"work_from_home": true},
+   "apply_options": [{"title": "Indeed", "link": "https://www.indeed.com/viewjob?jk=1"}],
+   "job_id": "def"
+  }
+ ]
+}

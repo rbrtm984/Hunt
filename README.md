@@ -11,11 +11,12 @@ properly.
    - Company boards (Greenhouse, Lever, Ashby, SmartRecruiters, Workable) for
      the companies in `config/companies.toml`.
    - Cross-company feeds in `config/feeds.toml`: HN Who's Hiring, Remotive,
-     Remote OK, Himalayas, Jobicy, and Adzuna once a free key is set.
+     Remote OK, Himalayas, Jobicy, and Adzuna and Google Jobs (through
+     SerpApi) once their keys are set.
    - Job alert emails in Gmail: YC Work at a Startup, LinkedIn, Indeed, Dice,
      Built In, Wellfound, Glassdoor and others. Those sites bar automated
      access, so their alerts are the only way in.
-2. **Dedupe.** Skips anything seen on an earlier day (`state/seen.json`, kept
+2. **Dedupe and check it's open.** Skips anything seen on an earlier day (`state/seen.json`, kept
    on the `hunt-state` branch) and anything already in the tracker.
 3. **Filter.** `config/search.toml`: target titles, NYC or remote US, pay
    ceiling at least $150K, no staffing agencies without a client, no
@@ -72,13 +73,27 @@ himalayas.app
 jobicy.com
 api.adzuna.com
 www.workatastartup.com
+serpapi.com
 ```
 
 The first set are the APIs; the job-page hosts let the review step read a
 posting that came in with no description. Adzuna's free key, if used, goes
 in as the environment's secrets ADZUNA_APP_ID and ADZUNA_APP_KEY, never in
-this repo. No LinkedIn, Indeed or other board that bars automated access is
+this repo. Google Jobs works the same way: SerpApi's key goes in as
+SERPAPI_API_KEY, and serpapi.com has to be on the host list. Until both are
+there, the run reports Google Jobs as "not set up" and carries on. No LinkedIn, Indeed or other board that bars automated access is
 on the list.
+
+## Checks before scoring
+
+- **Still open?** Postings from alert emails and feeds get one fetch of
+  their job page after dedupe. A 404 or 410, a redirect back to the careers
+  page, or text like "no longer accepting applications" drops the posting
+  as closed. Pages the environment can't reach, and barred sites (LinkedIn,
+  Indeed and the rest), are kept for the review step. At most 60 pages a
+  run, likeliest top picks first.
+- **Scoring failures** are retried three times with a short pause, then
+  listed apart in the run log with the reason, never recorded as a 0.
 
 ## Ideas borrowed from other projects
 
@@ -86,6 +101,9 @@ on the list.
   check kept apart from the fit score (our scam check), refusing sponsorship
   as a flag, checking whether a posting is still open only after dedupe, and
   never submitting anything.
+- ApplyPilot: retrying a
+  failed scoring step and logging the error instead of saving a 0. Ideas
+  only: it also auto-applies, which this project never does.
 - [JobSpy](https://github.com/speedyapply/JobSpy): one posting shape across
   every source and per-run errors in the log. Ideas only: it scrapes LinkedIn
   and Indeed, which breaks their terms.
