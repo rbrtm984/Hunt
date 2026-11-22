@@ -403,3 +403,13 @@ def test_hn_uses_only_this_months_thread():
     got = feeds.fetch_hn(lambda url, body=None: fresh if "search_by_date" in url else feed("hn_item.json"),
                          now=datetime(2026, 11, 22, tzinfo=timezone.utc))
     assert got and all(p.source == "HN Who's Hiring" for p in got)
+
+
+def test_remote_abroad_is_not_mistaken_for_us():
+    from hunt.filters import location_check
+    eu = Posting(source="Ashby", company="Cohere", title="Engineer",
+                 url="x", location="Europe / Brussels / Munich / London (Remote)")
+    us = Posting(source="Ashby", company="Sayari", title="Engineer", url="x", location="Remote (USA)")
+    both = Posting(source="Ashby", company="Hex", title="Engineer", url="x", location="Remote - US / London")
+    assert location_check(eu, CFG).startswith("location: remote outside the US")
+    assert location_check(us, CFG) == "" and location_check(both, CFG) == ""
