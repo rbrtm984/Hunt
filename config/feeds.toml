@@ -31,3 +31,9 @@ salary_min = 150000
 enabled = false     # aggregator; needs JOOBLE_API_KEY and a sign-up form. Lowest yield in one 3,570-listing comparison, so off.
 queries = ["ai engineer", "full stack engineer"]
 where = ["New York", "Remote"]
+
+[feed.serpapi]
+enabled = true      # Google Jobs through SerpApi (Google's job search covers most employers' own sites). Needs SERPAPI_API_KEY in the hunt environment and serpapi.com on its allowed hosts; skipped until set. Hard cap of 5 searches a run keeps two runs a weekday inside the free 250 a month.
+queries = ["agentic engineer", "AI engineer", "applied AI engineer", "full stack engineer AI", "founding engineer AI"]
+where = ["New York, New York, United States"]
+max_searches = 5

@@ -4,6 +4,7 @@ unless record_seen is set."""
 from __future__ import annotations
 
 import json
+import time
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
@@ -11,7 +12,7 @@ from datetime import date
 from pathlib import Path
 
 from .config import Company
-from . import health
+from . import health, liveness
 from .filters import first_skip_reason
 from .models import Posting
 from .score import rank_key, score
@@ -33,6 +34,9 @@ class RunResult:
     unparsed_emails: list[str] = field(default_factory=list)
     sources: dict = field(default_factory=dict)  # per-source health, see health.py
     problems: list[str] = field(default_factory=list)
+    closed: list[Posting] = field(default_factory=list)  # dropped by the liveness check
+    liveness: dict = field(default_factory=dict)  # counts by state
+    score_errors: list[Posting] = field(default_factory=list)  # scoring failed after retries
 
     def skip_counts(self) -> Counter:
         return Counter(p.skip_reason.split(":")[0] for p in self.skipped)
@@ -86,6 +90,24 @@ def collect_feeds(feeds: list[tuple[str, dict]], fetcher=get_json, sources: dict
     return postings, errors
 
 
+def score_with_retry(p: Posting, cfg: dict, profile: dict, attempts: int = 3, backoff: float = 0.5) -> bool:
+    """Score one posting, retrying with backoff. (Idea from ApplyPilot, which
+    retries failed scoring and logs the error instead of recording a 0.) On
+    the last failure the posting keeps score None and gets score_error, so it
+    is reported apart and never ranked as if it scored 0."""
+    for attempt in range(1, attempts + 1):
+        try:
+            score(p, cfg, profile)
+            p.score_error = ""
+            return True
+        except Exception as e:  # noqa: BLE001 - any failure is recorded, not fatal
+            p.score, p.verdict = None, ""
+            p.score_error = f"{type(e).__name__}: {e}"
+            if attempt < attempts:
+                time.sleep(backoff * attempt)
+    return False
+
+
 def run(
     *,
     companies: list[Company],
@@ -101,6 +123,8 @@ def run(
     today: str | None = None,
     health_path: str | None = None,
     env=None,
+    page_fetcher=None,
+    live_limit: int = 60,
 ) -> RunResult:
     today = today or date.today().isoformat()
     res = RunResult()
@@ -133,6 +157,7 @@ def run(
     tracked = Tracked(tracked_path)
     batch_keys: set[str] = set()
 
+    candidates: list[Posting] = []
     for p in collected:
         res.per_source[p.source] += 1
         if p.key in batch_keys:
@@ -148,14 +173,35 @@ def run(
         if p.skip_reason:
             res.skipped.append(p)
         else:
-            score(p, cfg, profile)
-            if tracked.has_company(p):
-                p.why = (p.why + "; " if p.why else "") + "you've applied here before"
-            res.kept.append(p)
+            candidates.append(p)
+
+    # Liveness: after dedupe and the skip rules, before scoring.
+    # The check is capped per run, so look at the likeliest top picks first:
+    # a quick provisional score just orders the queue.
+    if page_fetcher is not None:
+        def provisional(p: Posting) -> int:
+            try:
+                return -(score(Posting.from_dict(p.to_dict()), cfg, profile).score or 0)
+            except Exception:  # noqa: BLE001
+                return 0
+        candidates.sort(key=provisional)
+        res.liveness = liveness.check_all(candidates, page_fetcher=page_fetcher, limit=live_limit)
+        res.closed = [p for p in candidates if p.live == liveness.CLOSED]
+        candidates = [p for p in candidates if p.live != liveness.CLOSED]
+
+    for p in candidates:
+        if not score_with_retry(p, cfg, profile):
+            res.score_errors.append(p)
+            continue
+        if tracked.has_company(p):
+            p.why = (p.why + "; " if p.why else "") + "you've applied here before"
+        res.kept.append(p)
 
     res.kept.sort(key=rank_key)
     if record_seen:
-        for p in res.kept + res.skipped:
+        # Closed roles are remembered too, so tomorrow doesn't fetch them again.
+        # Scoring failures are not, so the next run tries them again.
+        for p in res.kept + res.skipped + res.closed:
             seen.add(p, today)
         seen.save()
         if health_path:
@@ -168,7 +214,12 @@ def write_outputs(res: RunResult, out_dir: str | Path, top: int, max_rows: int, 
     out.mkdir(parents=True, exist_ok=True)
     rows = to_rows(res.kept[:max_rows], today)
     (out / "results.json").write_text(
-        json.dumps({"kept": [p.to_dict() for p in res.kept], "skipped": [p.to_dict() for p in res.skipped]}, indent=1),
+        json.dumps({
+            "kept": [p.to_dict() for p in res.kept],
+            "skipped": [p.to_dict() for p in res.skipped],
+            "closed": [p.to_dict() for p in res.closed],
+            "score_errors": [p.to_dict() for p in res.score_errors],
+        }, indent=1),
         encoding="utf-8",
     )
     (out / "rows.json").write_text(json.dumps({"values": rows}, indent=1), encoding="utf-8")
@@ -181,6 +232,10 @@ def write_outputs(res: RunResult, out_dir: str | Path, top: int, max_rows: int, 
         "already_in_tracker": res.already_tracked,
         "skipped": len(res.skipped),
         "skipped_by_reason": dict(res.skip_counts()),
+        "dropped_as_closed": len(res.closed),
+        "closed": [f"{p.company}, {p.title}: {p.skip_reason.removeprefix('closed: ')}" for p in res.closed],
+        "liveness": res.liveness,
+        "score_errors": [f"{p.company}, {p.title}: {p.score_error}" for p in res.score_errors],
         "kept": len(res.kept),
         "rows_for_tracker": len(rows),
         "errors": res.errors,
@@ -201,6 +256,14 @@ def summarize(res: RunResult, top: int) -> str:
     else:
         ok = sum(1 for s in res.sources.values() if s.get("status") == "ok")
         lines += [f"All {ok} sources worked.", ""]
+    if res.liveness:
+        lines.append(f"Liveness: {len(res.closed)} closed posting(s) dropped before scoring; "
+                     f"{res.liveness.get('unknown', 0)} page(s) wouldn't load and were kept.")
+    if res.score_errors:
+        lines.append(f"{len(res.score_errors)} posting(s) couldn't be scored (left out, not counted as 0): "
+                     + "; ".join(f"{p.company}, {p.title}" for p in res.score_errors[:5]) + ".")
+    if res.liveness or res.score_errors:
+        lines.append("")
     lines += [f"Top {min(top, len(res.kept))} new roles today ({len(res.kept)} passed your skip rules)", ""]
     for i, p in enumerate(res.kept[:top], 1):
         pay = f", ${p.pay_min // 1000 if p.pay_min else '?'}K to ${p.pay_max // 1000}K" if p.pay_max else ""

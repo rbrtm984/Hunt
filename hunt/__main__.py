@@ -18,7 +18,7 @@ import sys
 from . import pipeline
 from .config import load_companies, load_feeds, load_profile, load_search
 from .sources import boards
-from .sources.http import FetchError
+from .sources.http import FetchError, get_page
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -40,6 +40,8 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--out", default="out", help="output folder")
     r.add_argument("--top", type=int, default=5)
     r.add_argument("--max-rows", type=int, default=15, help="most rows to hand the tracker per day")
+    r.add_argument("--no-liveness", action="store_true", help="don't open job pages to check they're still open")
+    r.add_argument("--live-limit", type=int, default=60, help="most job pages to check per run")
     r.add_argument("--date", help="override today's date (YYYY-MM-DD)")
 
     c = sub.add_parser("check-companies", help="try every company's board and report bad names")
@@ -71,6 +73,8 @@ def _run(args) -> int:
         record_seen=args.record_seen,
         today=args.date,
         health_path=args.health,
+        page_fetcher=None if (args.no_liveness or args.no_boards) else get_page,
+        live_limit=args.live_limit,
     )
     log = pipeline.write_outputs(res, args.out, args.top, args.max_rows, args.date)
     print(pipeline.summarize(res, args.top))

@@ -13,6 +13,9 @@ Each feed returns a list of Posting. Terms each feed asks for:
 - HN Who's Hiring: Algolia's public HN API.
 - Adzuna, Jooble: free API keys, set as environment variables in the cloud
   environment (never in this repo). Skipped quietly when no key is set.
+- Google Jobs through SerpApi: needs SERPAPI_API_KEY, set by Rob in the
+  cloud environment. At most 5 searches a run, so two runs a weekday stay
+  inside SerpApi's free 250 searches a month.
 """
 
 from __future__ import annotations
@@ -35,6 +38,9 @@ HN_SEARCH = "https://hn.algolia.com/api/v1/search_by_date?tags=story,author_whoi
 HN_ITEM = "https://hn.algolia.com/api/v1/items/{id}"
 ADZUNA = "https://api.adzuna.com/v1/api/jobs/us/search/1"
 JOOBLE = "https://jooble.org/api/{key}"
+SERPAPI = "https://serpapi.com/search.json"
+SERPAPI_MAX_SEARCHES = 5  # per run; 2 runs x ~22 weekdays x 5 = 220, under the free 250/month
+HN_MAX_AGE_DAYS = 40  # the monthly thread goes up on the first weekday of each month
 
 
 class NotConfigured(Exception):
@@ -58,6 +64,8 @@ def fetch(name: str, opts: dict, fetcher=get_json, env=None) -> list[Posting]:
         return fetch_adzuna(opts, fetcher, env)
     if name == "jooble":
         return fetch_jooble(opts, fetcher, env)
+    if name == "serpapi":
+        return fetch_serpapi(opts, fetcher, env)
     raise ValueError(f"unknown feed {name!r}")
 
 
@@ -159,12 +167,19 @@ _ROLE_WORDS = re.compile(r"engineer|developer|founding|full[- ]?stack|swe\b|mts\
 _LOC_WORDS = re.compile(r"remote|onsite|on-site|hybrid|nyc|new york|san francisco|sf\b|bay area|\b[A-Z][a-z]+, [A-Z]{2}\b", re.I)
 
 
-def fetch_hn(fetcher=get_json) -> list[Posting]:
+def fetch_hn(fetcher=get_json, now: datetime | None = None) -> list[Posting]:
+    """This month's "Ask HN: Who is hiring?" thread. Location and role are
+    filtered by the same skip rules as every other source (NYC or US
+    remote, Rob's target titles)."""
+    from ..health import ShapeError
     hits = expect(fetcher(HN_SEARCH), dict, "hits", "HN search")
     thread = next((h for h in hits if (h.get("title") or "").lower().startswith("ask hn: who is hiring")), None)
     if not thread:
-        from ..health import ShapeError
         raise ShapeError("HN search: no 'Ask HN: Who is hiring?' thread in the latest results")
+    posted = thread.get("created_at_i")
+    now = now or datetime.now(timezone.utc)
+    if isinstance(posted, (int, float)) and (now.timestamp() - posted) > HN_MAX_AGE_DAYS * 86400:
+        raise ShapeError(f"HN: the newest Who's Hiring thread is from {_epoch_date(posted)}, so this month's isn't up yet")
     return parse_hn_thread(fetcher(HN_ITEM.format(id=thread["objectID"])))
 
 
@@ -266,6 +281,66 @@ def parse_jooble(data: dict) -> list[Posting]:
             posted_at=(job.get("updated") or "")[:10] or None,
         )
         p.pay_min, p.pay_max, p.pay_currency = parse_pay(job.get("salary") or "")
+        out.append(p)
+    return out
+
+
+# Job boards whose own pages we never fetch. When Google Jobs offers an
+# employer's own apply link, that's used instead (Tim: apply direct).
+_AGGREGATORS = (
+    "linkedin.com", "indeed.com", "ziprecruiter.com", "glassdoor.com", "dice.com", "monster.com",
+    "simplyhired.com", "talent.com", "builtin.com", "wellfound.com", "jooble.org", "adzuna.com",
+    "lensa.com", "jobright.ai", "snagajob.com", "careerbuilder.com", "salary.com", "learn4good.com",
+    "bebee.com", "jobgether.com", "teal.com", "whatjobs.com", "recruit.net", "trabajo.org",
+)
+
+
+def _is_aggregator(link: str) -> bool:
+    host = (urllib.parse.urlsplit(link).hostname or "").lower()
+    return any(host == h or host.endswith("." + h) for h in _AGGREGATORS)
+
+
+def fetch_serpapi(opts: dict, fetcher, env) -> list[Posting]:
+    key = env.get("SERPAPI_API_KEY")
+    if not key:
+        raise NotConfigured("SERPAPI_API_KEY not set")
+    searches = [(q, w) for q in opts.get("queries", []) for w in opts.get("where", ["New York, New York, United States"])]
+    limit = min(int(opts.get("max_searches", SERPAPI_MAX_SEARCHES)), SERPAPI_MAX_SEARCHES)
+    out = []
+    for query, where in searches[:limit]:
+        params = {"engine": "google_jobs", "q": query, "hl": "en", "gl": "us", "api_key": key}
+        if where:
+            params["location"] = where
+        out += parse_serpapi(fetcher(SERPAPI + "?" + urllib.parse.urlencode(params)))
+    return out
+
+
+def parse_serpapi(data: dict) -> list[Posting]:
+    if isinstance(data, dict) and data.get("error") and "jobs_results" not in data:
+        # "Google hasn't returned any results for this query." is a normal empty answer.
+        if "hasn't returned any results" in str(data["error"]):
+            return []
+        raise ValueError(f"SerpApi: {data['error']}")
+    out = []
+    for job in expect(data, dict, "jobs_results", "SerpApi Google Jobs"):
+        ext = job.get("detected_extensions") or {}
+        links = [o.get("link") or "" for o in (job.get("apply_options") or []) if o.get("link")]
+        direct = next((x for x in links if not _is_aggregator(x)), "")
+        url = direct or (links[0] if links else "") or job.get("share_link") or ""
+        loc = (job.get("location") or "").strip()
+        if ext.get("work_from_home") and "remote" not in loc.lower():
+            loc = f"{loc} (Remote)".strip() if loc else "Remote"
+        desc = (job.get("description") or "").strip()
+        p = Posting(
+            source="Google Jobs",
+            company=(job.get("company_name") or "").strip(),
+            title=(job.get("title") or "").strip(),
+            url=url,
+            location=loc,
+            description=desc,
+            posted_at=None,  # Google gives "3 days ago", not a date
+        )
+        p.pay_min, p.pay_max, p.pay_currency = parse_pay(f"{ext.get('salary') or ''}\n{desc}")
         out.append(p)
     return out
 

@@ -1,0 +1,44 @@
+# Test run of the pipeline on GitHub's servers. It reads the public job
+# board APIs and feeds only: no Gmail, no Google Sheets, no secrets, so it
+# can't write to the tracker or send anything. Results go to the run's log
+# and a downloadable "dry-run" artifact.
+name: Dry run
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["claude/**"]
+
+permissions:
+  contents: read
+
+jobs:
+  dry-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Tests
+        run: pip install -q pytest && python -m pytest -q
+      - name: Dry run (boards, feeds, liveness; writes nothing)
+        run: python -m hunt run --out out --top 10 --max-rows 15
+      - name: Run log
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          log = json.load(open("out/run-log.json"))
+          print("PER SOURCE:")
+          for name, s in sorted(log["sources"].items()):
+              print(f"  {name}: {s.get('status', '')} fetched={s.get('fetched')} {s.get('error', '')}")
+          for k in ("collected_per_source", "skipped_by_reason", "liveness", "dropped_as_closed", "closed", "score_errors", "kept", "rows_for_tracker"):
+              print(k.upper() + ":", json.dumps(log.get(k), indent=1))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dry-run
+          path: out/
