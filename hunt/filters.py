@@ -2,7 +2,8 @@
 
 These mirror Rob's skip criteria: staffing agencies with no named client,
 Java/JVM, mobile native or Go-only roles, PERM postings, pay ceilings under
-the floor, fully onsite, plus location (NYC or remote US) and seniority.
+the floor, fully onsite, plus location (NYC or remote US) and seniority,
+and any company on Rob's companies-to-skip list.
 """
 
 from __future__ import annotations
@@ -86,6 +87,14 @@ def text_check(p: Posting, cfg: dict) -> str:
     return ""
 
 
+def company_check(p: Posting, cfg: dict) -> str:
+    company = f" {norm(p.company)} "
+    for name in cfg.get("companies_to_skip", {}).get("names", []):
+        if norm(name) and f" {norm(name)} " in company:
+            return f"on your companies-to-skip list: {p.company}"
+    return ""
+
+
 def staffing_check(p: Posting, cfg: dict) -> str:
     company = f" {norm(p.company)} "
     if any(f" {norm(a)} " in company for a in cfg["staffing"]["agencies"]):
@@ -127,7 +136,7 @@ def scam_check(p: Posting, cfg: dict) -> str:
 
 
 def first_skip_reason(p: Posting, cfg: dict, profile: dict) -> str:
-    for check in (title_check, location_check, pay_check, staffing_check, scam_check, text_check, seniority_check):
+    for check in (company_check, title_check, location_check, pay_check, staffing_check, scam_check, text_check, seniority_check):
         reason = check(p, cfg)
         if reason:
             return reason

@@ -66,6 +66,13 @@ staffing = [
   "c2c", "corp to corp",
 ]
 
+[companies_to_skip]
+# Companies you won't work for. Any posting from one of these is dropped before
+# scoring and never reaches the sheet. Case doesn't matter, and a name matches as
+# whole words, so "palantir" also catches "Palantir Technologies".
+# Add one name per entry, e.g. names = ["palantir", "some other co"].
+names = []
+
 [staffing]
 # Company names treated as staffing agencies. They're skipped unless a client is named.
 agencies = [
