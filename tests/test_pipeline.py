@@ -413,3 +413,17 @@ def test_remote_abroad_is_not_mistaken_for_us():
     both = Posting(source="Ashby", company="Hex", title="Engineer", url="x", location="Remote - US / London")
     assert location_check(eu, CFG).startswith("location: remote outside the US")
     assert location_check(us, CFG) == "" and location_check(both, CFG) == ""
+
+
+def test_company_skip_list():
+    from hunt.filters import first_skip_reason
+    from hunt.models import Posting
+
+    cfg, profile = load_search(), load_profile()
+    assert cfg["companies_to_skip"]["names"] == []  # starts empty
+    p = Posting(source="Greenhouse", company="Palantir Technologies", title="Software Engineer", location="New York, NY", url="https://example.com/1", description="TypeScript React")
+    assert not first_skip_reason(p, cfg, profile).startswith("on your companies-to-skip list")
+    cfg["companies_to_skip"]["names"] = ["PALANTIR"]
+    assert first_skip_reason(p, cfg, profile) == "on your companies-to-skip list: Palantir Technologies"
+    p.company = "Palantiri Labs"  # whole words only
+    assert not first_skip_reason(p, cfg, profile).startswith("on your companies-to-skip list")
