@@ -1,0 +1,125 @@
+{
+ "Ashby: Abridge": [
+  29
+ ],
+ "Ashby: Baseten": [
+  108
+ ],
+ "Ashby: Clay": [
+  57
+ ],
+ "Ashby: Cohere": [
+  123
+ ],
+ "Ashby: Decagon": [
+  109
+ ],
+ "Ashby: ElevenLabs": [
+  123
+ ],
+ "Ashby: Harvey": [
+  394
+ ],
+ "Ashby: Hebbia": [
+  23
+ ],
+ "Ashby: Hex": [
+  42
+ ],
+ "Ashby: Hightouch": [
+  1
+ ],
+ "Ashby: LangChain": [
+  100
+ ],
+ "Ashby: Linear": [
+  32
+ ],
+ "Ashby: Mercury": [
+  0
+ ],
+ "Ashby: Modal": [
+  52
+ ],
+ "Ashby: Notion": [
+  170
+ ],
+ "Ashby: Perplexity": [
+  151
+ ],
+ "Ashby: Plaid": [
+  146
+ ],
+ "Ashby: Ramp": [
+  186
+ ],
+ "Ashby: Replit": [
+  38
+ ],
+ "Ashby: Sierra": [
+  196
+ ],
+ "Ashby: Supabase": [
+  81
+ ],
+ "Ashby: Writer": [
+  46
+ ],
+ "Feed: adzuna": [
+  0
+ ],
+ "Feed: himalayas": [
+  20
+ ],
+ "Feed: hn": [
+  140
+ ],
+ "Feed: jobicy": [
+  100
+ ],
+ "Feed: remoteok": [
+  100
+ ],
+ "Feed: remotive": [
+  15
+ ],
+ "Feed: serpapi": [
+  0
+ ],
+ "Greenhouse: Anthropic": [
+  634
+ ],
+ "Greenhouse: Clever": [
+  9
+ ],
+ "Greenhouse: Coursera": [
+  34
+ ],
+ "Greenhouse: Datadog": [
+  386
+ ],
+ "Greenhouse: Duolingo": [
+  54
+ ],
+ "Greenhouse: Glean": [
+  129
+ ],
+ "Greenhouse: Khan Academy": [
+  3
+ ],
+ "Greenhouse: MongoDB": [
+  417
+ ],
+ "Greenhouse: Newsela": [
+  9
+ ],
+ "Greenhouse: Vercel": [
+  86
+ ],
+ "Lever: Palantir": [
+  307
+ ],
+ "Lever: brightwheel": [
+  0
+ ]
+}
