@@ -83,11 +83,29 @@
   "skip": "title: not a target role",
   "url_key": "0bffe786166499a9"
  },
+ "abridge|deployment strategy director": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: director",
+  "url_key": "21783ff40e47ad92"
+ },
  "abridge|deployment strategy director federal": {
   "first_seen": "2026-11-23",
   "score": null,
   "skip": "title: director",
   "url_key": "ed6610f4e6b9df9f"
+ },
+ "abridge|deployment strategy director kaiser": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: director",
+  "url_key": "e5a0761ea730a715"
+ },
+ "abridge|deployment strategy director texas": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: director",
+  "url_key": "dcef32454cad96ae"
  },
  "abridge|director people": {
   "first_seen": "2026-11-23",
@@ -286,6 +304,18 @@
   "score": null,
   "skip": "location: ONSITE Vancouver, BC, Canada",
   "url_key": "ed1386d9e3dab08a"
+ },
+ "alter solutions|d veloppeur web magnolia full remote": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "3a1a99e9087bcdb1"
+ },
+ "alter solutions|technical solution manager 100 remote": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "f65810108c7c88b8"
  },
  "alternative payments|senior software engineer alti": {
   "first_seen": "2026-11-23",
@@ -6365,6 +6395,12 @@
   "skip": "title: manager",
   "url_key": "ca1f365e62e01c67"
  },
+ "datadog|manager forward deployed engineering implementation services": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "aceafd3324d16905"
+ },
  "datadog|manager global entity management": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -7564,6 +7600,12 @@
   "score": null,
   "skip": "title: manager",
   "url_key": "29fff7faa0981bcb"
+ },
+ "decagon|partner development manager voice": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "2f2a3e896a1453d4"
  },
  "decagon|payroll manager": {
   "first_seen": "2026-11-23",
@@ -9071,6 +9113,12 @@
   "skip": "title: staff engineer",
   "url_key": "f7c2e0c6865040a7"
  },
+ "fidelity international|translator fidelity clearing canada 100 remote contract": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "32cad6c735cd0385"
+ },
  "fin|forward deployed engineer": {
   "first_seen": "2026-11-23",
   "score": 81,
@@ -10186,6 +10234,12 @@
   "score": null,
   "skip": "title: manager",
   "url_key": "d53d7139399221d8"
+ },
+ "harvey|engineering manager production engineering": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "039bf31fe3fdd99b"
  },
  "harvey|enterprise account executive anz": {
   "first_seen": "2026-11-23",
@@ -11471,6 +11525,12 @@
   "skip": "title: account exec",
   "url_key": "667c4311aa43b605"
  },
+ "hex|mid market account manager": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "1fe184f1b9e46ec5"
+ },
  "hex|partner manager sis": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -11722,6 +11782,24 @@
   "score": null,
   "skip": "location: San Francisco / Onsite",
   "url_key": "90e3e8532f020b38"
+ },
+ "jpm unternehmensgruppe|virtual banker ii chicago il": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "39c86f7dfe2cfa06"
+ },
+ "jpm unternehmensgruppe|virtual banker ii tempe az": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "ef1588a80be140ef"
+ },
+ "jpm unternehmensgruppe|virtual banker ii tempe az bilingual english and spanish required": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "ab81a601c3788c5a"
  },
  "jpmorganchase|lead software engineer": {
   "first_seen": "2026-11-23",
@@ -12377,6 +12455,12 @@
   "skip": "title: not a target role",
   "url_key": "8e1e8c32fa29170b"
  },
+ "lonza|head of safety health environment": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: head of",
+  "url_key": "41172412f05df866"
+ },
  "lumen labs|robotics hardware engineer simulation engineer": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -12742,6 +12826,12 @@
   "score": null,
   "skip": "location: remote outside the US (Remote (Europe))",
   "url_key": "fb33a109a43ff06e"
+ },
+ "modern menopause|medical doctor licensed physician": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "718014a75b5b87ee"
  },
  "mongodb|2027 ai and people transformation intern nyc": {
   "first_seen": "2026-11-23",
@@ -15347,6 +15437,12 @@
   "skip": "title: not a target role",
   "url_key": "7dbb4a47a7b778ce"
  },
+ "notion|solutions consultant mid market spain": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "f9f0a9bdd9258862"
+ },
  "notion|solutions consultant mid market uki": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -15413,6 +15509,12 @@
   "skip": "location: Hybrid, 3 days/week in office",
   "url_key": "0c22e4919d77b4fe"
  },
+ "olsson|project civil engineer data center": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "c6035e4000281d1c"
+ },
  "open education applications neon|senior frontend engineer": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -15436,6 +15538,12 @@
   "score": 72,
   "skip": null,
   "url_key": "d27ef5d5045a2ae5"
+ },
+ "orcom us|chef de mission supervisor": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "3eec3ad2dedeaff6"
  },
  "orff maestra|prototype developer technical product lead": {
   "first_seen": "2026-11-23",
@@ -17021,6 +17129,12 @@
   "skip": null,
   "url_key": "b85882ad9992b983"
  },
+ "pirkey barber pllc|trademark docketing clerk": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "cf0c25d6be17e640"
+ },
  "plaid|account executive banking and wealth territory accounts": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -17842,6 +17956,12 @@
   "score": 42,
   "skip": null,
   "url_key": "e6587875604d7479"
+ },
+ "power digital marketing|data engineer ai analytics": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "1e245e068b58e277"
  },
  "princeton10|account director": {
   "first_seen": "2026-11-23",
@@ -20801,6 +20921,12 @@
   "skip": "title: manager",
   "url_key": "a4d9476edb439230"
  },
+ "urban connect|founding games engineer roblox b2b": {
+  "first_seen": "2026-11-23",
+  "score": 43,
+  "skip": null,
+  "url_key": "f92486230411fc40"
+ },
  "vercel|account executive commercial": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -21293,6 +21419,12 @@
   "skip": "title: not a target role",
   "url_key": "d73e135176ecc289"
  },
+ "veriheal|mmj physician": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "d2d9db82a2dfbd11"
+ },
  "viva finance|front end mobile developer": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -21346,6 +21478,12 @@
   "score": null,
   "skip": "title: staff software",
   "url_key": "b34f55e5cca55dec"
+ },
+ "win home inspection|marketing associate": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "56412f77497271bc"
  },
  "wpromote|director ai solutions": {
   "first_seen": "2026-11-23",
@@ -21550,6 +21688,12 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "a25f8728eae2cbe6"
+ },
+ "you com|senior back end engineer platform": {
+  "first_seen": "2026-11-23",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "093e0b2b734d650b"
  },
  "zed industries|https zed dev zed is a company for developers by developers all 3 of our founders have spent years in the trenches": {
   "first_seen": "2026-11-23",

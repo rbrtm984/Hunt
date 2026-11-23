@@ -1,125 +1,166 @@
 {
  "Ashby: Abridge": [
-  29
+  29,
+  30
  ],
  "Ashby: Baseten": [
+  108,
   108
  ],
  "Ashby: Clay": [
+  57,
   57
  ],
  "Ashby: Cohere": [
+  123,
   123
  ],
  "Ashby: Decagon": [
-  109
+  109,
+  110
  ],
  "Ashby: ElevenLabs": [
+  123,
   123
  ],
  "Ashby: Harvey": [
+  394,
   394
  ],
  "Ashby: Hebbia": [
+  23,
   23
  ],
  "Ashby: Hex": [
+  42,
   42
  ],
  "Ashby: Hightouch": [
+  1,
   1
  ],
  "Ashby: LangChain": [
+  100,
   100
  ],
  "Ashby: Linear": [
+  32,
   32
  ],
  "Ashby: Mercury": [
+  0,
   0
  ],
  "Ashby: Modal": [
+  52,
   52
  ],
  "Ashby: Notion": [
-  170
+  170,
+  171
  ],
  "Ashby: Perplexity": [
+  151,
   151
  ],
  "Ashby: Plaid": [
+  146,
   146
  ],
  "Ashby: Ramp": [
-  186
+  186,
+  181
  ],
  "Ashby: Replit": [
+  38,
   38
  ],
  "Ashby: Sierra": [
-  196
+  196,
+  197
  ],
  "Ashby: Supabase": [
+  81,
   81
  ],
  "Ashby: Writer": [
-  46
+  46,
+  45
  ],
  "Feed: adzuna": [
+  0,
   0
  ],
  "Feed: himalayas": [
+  20,
   20
  ],
  "Feed: hn": [
+  140,
   140
  ],
  "Feed: jobicy": [
+  100,
   100
  ],
  "Feed: remoteok": [
+  100,
   100
  ],
  "Feed: remotive": [
+  15,
   15
  ],
  "Feed: serpapi": [
+  0,
   0
  ],
  "Greenhouse: Anthropic": [
+  634,
   634
  ],
  "Greenhouse: Clever": [
+  9,
   9
  ],
  "Greenhouse: Coursera": [
+  34,
   34
  ],
  "Greenhouse: Datadog": [
+  386,
   386
  ],
  "Greenhouse: Duolingo": [
+  54,
   54
  ],
  "Greenhouse: Glean": [
+  129,
   129
  ],
  "Greenhouse: Khan Academy": [
+  3,
   3
  ],
  "Greenhouse: MongoDB": [
-  417
+  417,
+  418
  ],
  "Greenhouse: Newsela": [
-  9
+  9,
+  8
  ],
  "Greenhouse: Vercel": [
+  86,
   86
  ],
  "Lever: Palantir": [
+  307,
   307
  ],
  "Lever: brightwheel": [
+  0,
   0
  ]
 }
