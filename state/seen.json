@@ -323,6 +323,24 @@
   "skip": "location: remote outside the US (REMOTE (Brazil))",
   "url_key": "3fcf63e283757b79"
  },
+ "ameresco|procurement manager federal": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "ecf5ea3193d2bc44"
+ },
+ "amgen|senior manager bite portfolio marketing operations": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "eb73a2a517a1b5c8"
+ },
+ "ams psr|data and reporting analyst": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: recruit",
+  "url_key": "c53779c336d6f3e6"
+ },
  "anthropic|3p revenue accounting reporting": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -514,6 +532,12 @@
   "score": null,
   "skip": "title: architect",
   "url_key": "79ae013bdda5c945"
+ },
+ "anthropic|applied ai architect technology partnerships": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: architect",
+  "url_key": "fe429866eab81c9a"
  },
  "anthropic|applied ai architects partner": {
   "first_seen": "2026-11-23",
@@ -1493,6 +1517,12 @@
   "skip": "title: head of",
   "url_key": "5e58b4996d53ea77"
  },
+ "anthropic|head of laboratory facilities": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: head of",
+  "url_key": "5720c3a87fd67fce"
+ },
  "anthropic|head of national security sales": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -1684,6 +1714,12 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "8f5bb497e4561470"
+ },
+ "anthropic|life sciences operator external research": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "1ac6fbc33d1c5c39"
  },
  "anthropic|machine learning data scientist forecasting platform": {
   "first_seen": "2026-11-23",
@@ -4367,6 +4403,12 @@
   "skip": "title: android",
   "url_key": "2614eadf4628d185"
  },
+ "bsi|certification manager cyber resilience act": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "3e994967f67b3854"
+ },
  "bubblehouse|principal engineer": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -4421,17 +4463,41 @@
   "skip": "title: manager",
   "url_key": "a9f0936f843f0902"
  },
+ "canonical|software engineer": {
+  "first_seen": "2026-11-24",
+  "score": 46,
+  "skip": null,
+  "url_key": "3a6b7d6229e9c816"
+ },
+ "canonical|software engineer python cloud graduate level": {
+  "first_seen": "2026-11-24",
+  "score": 45,
+  "skip": null,
+  "url_key": "d9a2fd51dabb0166"
+ },
  "canonical|software engineer secure container images": {
   "first_seen": "2026-11-23",
   "score": 54,
   "skip": null,
   "url_key": "7619f2f1cfb67ae2"
  },
+ "canonical|software engineer ubuntu server certification": {
+  "first_seen": "2026-11-24",
+  "score": 44,
+  "skip": null,
+  "url_key": "96d406b9fbdbcfb3"
+ },
  "canonical|software engineering manager sustaining engineering": {
   "first_seen": "2026-11-23",
   "score": null,
   "skip": "title: manager",
   "url_key": "ba45bd2fcc8543c5"
+ },
+ "canonical|system software engineer gcc llvm compiler tooling and ecosystem": {
+  "first_seen": "2026-11-24",
+  "score": 42,
+  "skip": null,
+  "url_key": "f79dbed0564d53d6"
  },
  "carrot|corporate counsel commercial": {
   "first_seen": "2026-11-23",
@@ -4528,6 +4594,12 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "faaadeacfb082198"
+ },
+ "clay|front desk coordinator": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "5d58b5f7843944ee"
  },
  "clay|grc program manager": {
   "first_seen": "2026-11-23",
@@ -4859,6 +4931,12 @@
   "skip": "title: not a target role",
   "url_key": "e0412abbd5a4d0d3"
  },
+ "clover health|senior software developer agentic ai canada": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "location: remote outside the US (Remote (Canada Only))",
+  "url_key": "a3593dda7e6c78d2"
+ },
  "clover health|senior software developer canada": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -4870,6 +4948,12 @@
   "score": 30,
   "skip": null,
   "url_key": "b8013bc2f37dae4c"
+ },
+ "clover health|senior software engineer agentic ai": {
+  "first_seen": "2026-11-24",
+  "score": 84,
+  "skip": null,
+  "url_key": "4750248a79c68ef9"
  },
  "clover health|technical chief of staff to the cto": {
   "first_seen": "2026-11-23",
@@ -5026,6 +5110,12 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "bf5abfd44a249b9e"
+ },
+ "cohere|finance systems senior analyst": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "bc2781fa1a5aaa4a"
  },
  "cohere|financial analyst g a": {
   "first_seen": "2026-11-23",
@@ -5345,6 +5435,12 @@
   "skip": "location: remote outside the US (Toronto / Canada / London / Montreal (Remote))",
   "url_key": "8d6644e2ab530aeb"
  },
+ "cohere|senior global benefits specialist": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "8e69345cc658360e"
+ },
  "cohere|senior manager gtm strategic finance": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -5591,6 +5687,12 @@
   "skip": null,
   "url_key": "e4ac12d9fa55565a"
  },
+ "company|team lead product design": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "ad08c5a1cdd2ecb2"
+ },
  "confidential healthcare ai startup|senior full stack engineer": {
   "first_seen": "2026-11-23",
   "score": 48,
@@ -5620,6 +5722,12 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "30ebfb525a98c504"
+ },
+ "coreweave|senior data platform engineer weights biases": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "32ab8dbccd14fe7f"
  },
  "coreweave|senior specialist field engineers": {
   "first_seen": "2026-11-23",
@@ -5699,6 +5807,12 @@
   "skip": "title: account exec",
   "url_key": "7a4fccfd680faf57"
  },
+ "coursera|enterprise ae state local government": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "4ae9e38a39ed5fc2"
+ },
  "coursera|enterprise fp a lead": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -5764,6 +5878,12 @@
   "score": null,
   "skip": "title: data scientist",
   "url_key": "866f7e1c2d4bb8ec"
+ },
+ "coursera|senior financial analyst enterprise": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "4293565670ca29b3"
  },
  "coursera|senior merchandising manager": {
   "first_seen": "2026-11-23",
@@ -5837,11 +5957,23 @@
   "skip": "title: staff software",
   "url_key": "e76cd2344139eeb8"
  },
+ "csi|senior technical project manager qolo": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "6515ff41ffd3edf6"
+ },
  "curiosity|forward deployed engineer devops architect": {
   "first_seen": "2026-11-23",
   "score": null,
   "skip": "title: architect",
   "url_key": "93e10a648f6b0622"
+ },
+ "curriculum associates|temp project manager product operations": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "44504c62d9d5b534"
  },
  "cynet|strategic account executive": {
   "first_seen": "2026-11-23",
@@ -6167,6 +6299,12 @@
   "skip": "title: manager",
   "url_key": "2593dbd1da338901"
  },
+ "datadog|enterprise customer success manager dublin": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "7f3d3ff496caa97f"
+ },
  "datadog|enterprise sales engineer": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -6382,6 +6520,12 @@
   "score": null,
   "skip": "title: manager",
   "url_key": "26050447ca204355"
+ },
+ "datadog|manager corporate security": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "cf98389f2f26d202"
  },
  "datadog|manager customer success": {
   "first_seen": "2026-11-23",
@@ -7265,6 +7409,12 @@
   "skip": "title: manager",
   "url_key": "5289783150bad43f"
  },
+ "datadog|technical account manager 2 mexico city": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "eb330ebe1a429f23"
+ },
  "datadog|technical account manager 2 new york": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -7595,6 +7745,12 @@
   "skip": "title: head of",
   "url_key": "efdc96c389bd2f87"
  },
+ "decagon|legal operations manager": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "8281d726f534d7b9"
+ },
  "decagon|partner development manager strategic": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -7690,6 +7846,12 @@
   "score": null,
   "skip": "title: manager",
   "url_key": "d4828db5917af3f1"
+ },
+ "decagon|senior counsel product privacy ai governance": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "fb6eef1586ac5899"
  },
  "decagon|senior hr business partner engineering product and design": {
   "first_seen": "2026-11-23",
@@ -7787,6 +7949,12 @@
   "skip": "title: staff software",
   "url_key": "96285f2c55bfe2c6"
  },
+ "decagon|staff software engineer data infrastructure": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: staff software",
+  "url_key": "3bf3673baadf6e24"
+ },
  "decagon|staff software engineer platform security": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -7864,6 +8032,12 @@
   "score": null,
   "skip": "title: devops",
   "url_key": "8edc3f509dcac4c8"
+ },
+ "dispatch|fullstack engineer": {
+  "first_seen": "2026-11-24",
+  "score": 62,
+  "skip": null,
+  "url_key": "9bcbd00724b40b36"
  },
  "dispatch|senior fullstack engineer": {
   "first_seen": "2026-11-23",
@@ -8213,6 +8387,12 @@
   "skip": "title: vp",
   "url_key": "ef8f4bece9f684e2"
  },
+ "dysrupit|gmp account manager": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "3601059499fba322"
+ },
  "early stage startup|software engineer data analyst": {
   "first_seen": "2026-11-23",
   "score": 46,
@@ -8392,6 +8572,12 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "17b356cdd4c3fd0e"
+ },
+ "elevenlabs|commercial counsel brazil": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "ced53890122b46f0"
  },
  "elevenlabs|commercial counsel germany": {
   "first_seen": "2026-11-23",
@@ -9245,6 +9431,18 @@
   "skip": "title: director",
   "url_key": "44a6a7be6350793f"
  },
+ "gitlab|renewals manager latam": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "a217ea6cd3130152"
+ },
+ "gitlab|staff backend engineer performance enablement": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: staff backend",
+  "url_key": "4e4d809ffedfc58a"
+ },
  "gitlab|strategic account executive financial services us central": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -9256,6 +9454,18 @@
   "score": null,
   "skip": "title: account exec",
   "url_key": "76e0e89bc8a1cde2"
+ },
+ "gitlab|threat research engineer security factory threat research": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "a0d0b2ab887369eb"
+ },
+ "givedirectly|senior software engineer remote": {
+  "first_seen": "2026-11-24",
+  "score": 43,
+  "skip": null,
+  "url_key": "73ba901463e9103a"
  },
  "glean|accountant": {
   "first_seen": "2026-11-23",
@@ -9929,11 +10139,23 @@
   "skip": "title: not a target role",
   "url_key": "e5662360c24439df"
  },
+ "goodleap|software engineer ai transformation": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "pay: tops out at $145K",
+  "url_key": "ebde440523581626"
+ },
  "govstar|security engineer data engineer": {
   "first_seen": "2026-11-23",
   "score": null,
   "skip": "title: security engineer",
   "url_key": "d1860423320bfc63"
+ },
+ "gpm investments llc|staff accountant 1": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "fc33fa12abab2419"
  },
  "harvey|account executive enterprise": {
   "first_seen": "2026-11-23",
@@ -10133,11 +10355,23 @@
   "skip": "title: manager",
   "url_key": "c67685dd90c9692c"
  },
+ "harvey|customer success manager enterprise dusseldorf": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "bd7cee88bd148dca"
+ },
  "harvey|customer success manager enterprise emea": {
   "first_seen": "2026-11-23",
   "score": null,
   "skip": "title: manager",
   "url_key": "8f5cf58a36e4e1a6"
+ },
+ "harvey|customer success manager enterprise frankfurt": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "301ba059deab6ad4"
  },
  "harvey|customer success manager enterprise law firms emea": {
   "first_seen": "2026-11-23",
@@ -10636,6 +10870,12 @@
   "score": null,
   "skip": "title: manager",
   "url_key": "ada8117ee0b60489"
+ },
+ "harvey|recruiting coordinator": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: recruit",
+  "url_key": "65a2d6366bfb9317"
  },
  "harvey|recruiting operations generalist emea": {
   "first_seen": "2026-11-23",
@@ -11255,6 +11495,12 @@
   "skip": "title: staff backend",
   "url_key": "7e248a99953b3767"
  },
+ "health care service corporation|analytics rptg consultant": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "977c5893d70375a8"
+ },
  "healthie|private practice enablement specialist": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -11723,6 +11969,18 @@
   "skip": "location: San Francisco / ONSITE",
   "url_key": "90d218ce6a8eacae"
  },
+ "huntress|principal software engineer agentic soc": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: principal",
+  "url_key": "ab64e9bf17135498"
+ },
+ "huntress|principal software engineer siem": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: principal",
+  "url_key": "fa97d033a4c8adcd"
+ },
  "iapwe|freelance writer": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -11771,6 +12029,12 @@
   "skip": "title: staff software",
   "url_key": "cb954853d86f9c94"
  },
+ "iqvia|senior clinical data visualization developer": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "b81b054cbc988246"
+ },
  "jobber|manager software engineering operations": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -11818,6 +12082,12 @@
   "score": null,
   "skip": "location: remote outside the US (London, UK / REMOTE (UK))",
   "url_key": "bbca11e8807dca77"
+ },
+ "khan academy|khan kids senior consumer marketing manager": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "0d004bd777e80450"
  },
  "khan academy|principal experience architect": {
   "first_seen": "2026-11-23",
@@ -12245,6 +12515,12 @@
   "skip": "title: manager",
   "url_key": "4258d475b00ad74e"
  },
+ "launchdarkly|engineering manager experimentation": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "83d896f2160a1581"
+ },
  "launchdarkly|release strategist professional services": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -12268,6 +12544,12 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "ac7f4d19a3549636"
+ },
+ "legion|chief architect": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: architect",
+  "url_key": "ea49d33dfd205cd3"
  },
  "lemon io|senior back end developerusa": {
   "first_seen": "2026-11-23",
@@ -12766,6 +13048,12 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "2ad7dc0315a6d7e3"
+ },
+ "modal|security field engineer": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "c4570c8cd643771d"
  },
  "modal|senior commercial counsel": {
   "first_seen": "2026-11-23",
@@ -13336,6 +13624,12 @@
   "score": null,
   "skip": "title: manager",
   "url_key": "1fd1da6546ca6137"
+ },
+ "mongodb|manager knowledge": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "06ee9dfdf4c25e23"
  },
  "mongodb|manager product ai builder experience": {
   "first_seen": "2026-11-23",
@@ -13936,6 +14230,12 @@
   "score": null,
   "skip": "location: Dublin",
   "url_key": "e24cb6e26ef2ef65"
+ },
+ "mongodb|senior software engineer atlas clusters platform": {
+  "first_seen": "2026-11-24",
+  "score": 34,
+  "skip": null,
+  "url_key": "702ea7742efaaa96"
  },
  "mongodb|senior software engineer atlas clusters security": {
   "first_seen": "2026-11-23",
@@ -14591,6 +14891,12 @@
   "skip": "title: manager",
   "url_key": "a70cf9d42652b4af"
  },
+ "nexer group|sap hcm solution architect": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: architect",
+  "url_key": "32219e2cb02571c4"
+ },
  "nirvana robotics|mechanical engineer electrical engineer robotic controls engineer": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -14764,6 +15070,12 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "c86be3cacbaa4a59"
+ },
+ "notion|design engineer notion com": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "8a60341b71738a4b"
  },
  "notion|enablement program manager japan and korea": {
   "first_seen": "2026-11-23",
@@ -15538,6 +15850,12 @@
   "score": 72,
   "skip": null,
   "url_key": "d27ef5d5045a2ae5"
+ },
+ "orange business|directeur de la direction digital data et ia h f": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "d822aebd0ace2093"
  },
  "orcom us|chef de mission supervisor": {
   "first_seen": "2026-11-23",
@@ -17105,6 +17423,12 @@
   "skip": "title: account exec",
   "url_key": "74470c4b30c383d6"
  },
+ "pga corporation|intern player services and vip guests": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: intern",
+  "url_key": "aa13a1a1047bbbc7"
+ },
  "ping identity|business services assistant": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -17512,6 +17836,12 @@
   "score": null,
   "skip": "title: account exec",
   "url_key": "f7cf6032d00a704b"
+ },
+ "plaid|new business associate": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "46100b9892cb0834"
  },
  "plaid|new business leader": {
   "first_seen": "2026-11-23",
@@ -17987,6 +18317,12 @@
   "skip": "title: not a target role",
   "url_key": "4ef16cbaab71a677"
  },
+ "quartile|business operations manager governance": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "7cfb5ce80eff0e73"
+ },
  "quilter|senior full stack engineer": {
   "first_seen": "2026-11-23",
   "score": 55,
@@ -18136,6 +18472,12 @@
   "score": null,
   "skip": "title: intern",
   "url_key": "87af0c1e0f29a214"
+ },
+ "ramp|associate gtm finance": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "efcaddddf4e85a0a"
  },
  "ramp|associate gtm operations": {
   "first_seen": "2026-11-23",
@@ -19439,11 +19781,29 @@
   "skip": "title: staff engineer",
   "url_key": "e495fa7e7988aa2c"
  },
+ "roboflow|developer advocate": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "11ec3597ea36c2ab"
+ },
  "roboflow|forward deployed engineer": {
   "first_seen": "2026-11-23",
   "score": 60,
   "skip": null,
   "url_key": "4b1812ffb16115b9"
+ },
+ "roboflow|full stack engineer": {
+  "first_seen": "2026-11-24",
+  "score": 69,
+  "skip": null,
+  "url_key": "af316372b59ec33c"
+ },
+ "roboflow|gtm systems engineer": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "010503dc5782baa0"
  },
  "rootly|engineering gtm product sales": {
   "first_seen": "2026-11-23",
@@ -19474,6 +19834,12 @@
   "score": null,
   "skip": "title: manager",
   "url_key": "80f16f151328bf21"
+ },
+ "santo|1": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "241bc38796636387"
  },
  "sayari|forward deployed engineer i": {
   "first_seen": "2026-11-23",
@@ -20309,6 +20675,18 @@
   "skip": null,
   "url_key": "5e0002ee27dd8755"
  },
+ "socure|senior manager solution engineering docv": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "451bcf899b796d9f"
+ },
+ "socure|staff backend engineer": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: staff backend",
+  "url_key": "8a75cb73869fa5b7"
+ },
  "spade|multiple engineering ai ml data science and revenue roles": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -20795,6 +21173,12 @@
   "skip": "title: manager",
   "url_key": "02c718e7818c2ba9"
  },
+ "sysco|senior finance manager": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "479c9b71b5d3b754"
+ },
  "tala|manager machine learning engineering": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -20825,6 +21209,12 @@
   "skip": "title: designer",
   "url_key": "911919dae9e942e9"
  },
+ "tecdata engineering|aws cloud devops engineer": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: devops",
+  "url_key": "ef65de60e6a60810"
+ },
  "telescope partners|software engineer data scientist": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -20836,6 +21226,18 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "a45917684fdeaa50"
+ },
+ "telus international ai inc|online ad rater dutch speakers in netherlands": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "62f214d1456088ba"
+ },
+ "telus international ai inc|online ad rater english speakers in the united states": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "adca0e0671817cb5"
  },
  "temporal technologies|senior software engineer cloud data storage": {
   "first_seen": "2026-11-23",
@@ -20872,6 +21274,12 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "8b11a45e8d583df7"
+ },
+ "toptal|chief technology officer us based": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "8d931a7bf4fa3138"
  },
  "tremendous|senior software engineer": {
   "first_seen": "2026-11-23",
@@ -21112,6 +21520,12 @@
   "score": null,
   "skip": "title: manager",
   "url_key": "dc2c8ac4045521e2"
+ },
+ "vercel|manager technical account management": {
+  "first_seen": "2026-11-24",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "30de8b3b8e330301"
  },
  "vercel|member of technical staff financial data": {
   "first_seen": "2026-11-23",

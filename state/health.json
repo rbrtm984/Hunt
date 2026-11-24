@@ -1,165 +1,206 @@
 {
  "Ashby: Abridge": [
   29,
+  30,
   30
  ],
  "Ashby: Baseten": [
+  108,
   108,
   108
  ],
  "Ashby: Clay": [
   57,
+  57,
   57
  ],
  "Ashby: Cohere": [
   123,
-  123
+  123,
+  124
  ],
  "Ashby: Decagon": [
   109,
-  110
+  110,
+  113
  ],
  "Ashby: ElevenLabs": [
   123,
-  123
+  123,
+  119
  ],
  "Ashby: Harvey": [
   394,
-  394
+  394,
+  397
  ],
  "Ashby: Hebbia": [
+  23,
   23,
   23
  ],
  "Ashby: Hex": [
   42,
+  42,
   42
  ],
  "Ashby: Hightouch": [
+  1,
   1,
   1
  ],
  "Ashby: LangChain": [
   100,
-  100
+  100,
+  98
  ],
  "Ashby: Linear": [
   32,
-  32
+  32,
+  30
  ],
  "Ashby: Mercury": [
+  0,
   0,
   0
  ],
  "Ashby: Modal": [
   52,
+  52,
   52
  ],
  "Ashby: Notion": [
   170,
-  171
+  171,
+  172
  ],
  "Ashby: Perplexity": [
+  151,
   151,
   151
  ],
  "Ashby: Plaid": [
   146,
-  146
+  146,
+  144
  ],
  "Ashby: Ramp": [
   186,
-  181
+  181,
+  180
  ],
  "Ashby: Replit": [
+  38,
   38,
   38
  ],
  "Ashby: Sierra": [
   196,
-  197
+  197,
+  201
  ],
  "Ashby: Supabase": [
   81,
-  81
+  81,
+  80
  ],
  "Ashby: Writer": [
   46,
+  45,
   45
  ],
  "Feed: adzuna": [
+  0,
   0,
   0
  ],
  "Feed: himalayas": [
   20,
+  20,
   20
  ],
  "Feed: hn": [
   140,
-  140
+  140,
+  139
  ],
  "Feed: jobicy": [
+  100,
   100,
   100
  ],
  "Feed: remoteok": [
   100,
+  100,
   100
  ],
  "Feed: remotive": [
+  15,
   15,
   15
  ],
  "Feed: serpapi": [
   0,
+  0,
   0
  ],
  "Greenhouse: Anthropic": [
   634,
-  634
+  634,
+  633
  ],
  "Greenhouse: Clever": [
+  9,
   9,
   9
  ],
  "Greenhouse: Coursera": [
   34,
+  34,
   34
  ],
  "Greenhouse: Datadog": [
   386,
-  386
+  386,
+  383
  ],
  "Greenhouse: Duolingo": [
   54,
-  54
+  54,
+  53
  ],
  "Greenhouse: Glean": [
+  129,
   129,
   129
  ],
  "Greenhouse: Khan Academy": [
   3,
-  3
+  3,
+  4
  ],
  "Greenhouse: MongoDB": [
   417,
-  418
+  418,
+  419
  ],
  "Greenhouse: Newsela": [
   9,
-  8
+  8,
+  6
  ],
  "Greenhouse: Vercel": [
   86,
-  86
+  86,
+  85
  ],
  "Lever: Palantir": [
   307,
-  307
+  307,
+  305
  ],
  "Lever: brightwheel": [
+  0,
   0,
   0
  ]
