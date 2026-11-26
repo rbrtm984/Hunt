@@ -17,6 +17,12 @@
   "skip": "title: staff software",
   "url_key": "e5fd08e98920c5ce"
  },
+ "3m consultancy|lead java developer with irs mbi clearance needed": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: java",
+  "url_key": "11ff64d5c5b45384"
+ },
  "6sense|compensation manager": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -304,6 +310,12 @@
   "score": null,
   "skip": "title: account exec",
   "url_key": "d289354e63fa0144"
+ },
+ "agiloft|manager account managment": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "9132927d46a3c37a"
  },
  "ai x healthcare startup|early engineer": {
   "first_seen": "2026-11-23",
@@ -4535,6 +4547,12 @@
   "skip": "title: not a target role",
   "url_key": "4fc2962cbc10b147"
  },
+ "betterhelp|full stack software engineer": {
+  "first_seen": "2026-11-26",
+  "score": 71,
+  "skip": null,
+  "url_key": "6c142c3e5c99484e"
+ },
  "beyondtrust|sr analyst analytics insights": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -4588,6 +4606,24 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "da89486370967c87"
+ },
+ "bluelight consulting|laravel developer react remote latin america": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "02ee9eb15dd95367"
+ },
+ "boldscience|associate client services director": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: director",
+  "url_key": "b5803c36742259cb"
+ },
+ "bounteous|seo manager": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "8fa1b18b1eaf6271"
  },
  "branch|android engineer": {
   "first_seen": "2026-11-23",
@@ -4858,6 +4894,12 @@
   "score": 50,
   "skip": null,
   "url_key": "18843a6e9b8b6fff"
+ },
+ "cardinal group companies|chief of staff marketing": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "7b3796ccf4366bfb"
  },
  "cardiovascular associates of america|social work coordinator": {
   "first_seen": "2026-11-25",
@@ -6359,6 +6401,12 @@
   "skip": "title: sales",
   "url_key": "2432513950303dc5"
  },
+ "coursera|sales solutions engineer uae": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: sales",
+  "url_key": "186033de16190d3c"
+ },
  "coursera|senior ai specialist": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -6431,6 +6479,12 @@
   "skip": "title: not a target role",
   "url_key": "29f93f34cb0b1022"
  },
+ "cprime|apptio targetprocess implementation lead": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "fe1764ee9a3c897e"
+ },
  "creativelens|founding growth sales lead": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -6442,6 +6496,12 @@
   "score": null,
   "skip": "title: sales",
   "url_key": "1684edc405d238fe"
+ },
+ "cresta|engagement manager": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "b8898c9319a1c21f"
  },
  "cribl|international people ops analyst benefits": {
   "first_seen": "2026-11-23",
@@ -6478,6 +6538,12 @@
   "score": null,
   "skip": "title: manager",
   "url_key": "6515ff41ffd3edf6"
+ },
+ "cube care|b2b lead gen specialist full remote": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "fb12de918260a82c"
  },
  "curiosity|forward deployed engineer devops architect": {
   "first_seen": "2026-11-23",
@@ -9437,6 +9503,12 @@
   "skip": "title: not a target role",
   "url_key": "0e4cb6e48648209a"
  },
+ "elevenlabs|field marketing manager digital natives": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "648e52caa5121488"
+ },
  "elevenlabs|finance data scientist": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -9875,6 +9947,12 @@
   "skip": "title: sales",
   "url_key": "9a86df580e88e2e2"
  },
+ "empact|senior corporate finance manager": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "acc578c14aa5790a"
+ },
  "encube|ml engineer ml ops engineer": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -10066,6 +10144,12 @@
   "score": 50,
   "skip": null,
   "url_key": "55fe3e96f9e21294"
+ },
+ "florida blue|principal network engineer": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: principal",
+  "url_key": "857d70e387ba26fe"
  },
  "florida cancer specialists research institute|m a and capex valuations manager": {
   "first_seen": "2026-11-23",
@@ -12749,6 +12833,12 @@
   "skip": "title: sales",
   "url_key": "f4a360997de40f56"
  },
+ "hex|sales engineering manager commercial": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "c543c4f5161bdd91"
+ },
  "hex|senior it systems engineer": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -12959,11 +13049,35 @@
   "skip": "title: staff software",
   "url_key": "cb954853d86f9c94"
  },
+ "invisible technologies|japanese voice actor freelance ai trainer project": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "ee50b3c081a9eeb7"
+ },
+ "invisible technologies|registered nurse ai trainer": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "c919abc13d171893"
+ },
+ "invisible technologies|slovene voice actor freelance ai trainer project": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "d78fbc8d6d0fc3ce"
+ },
  "iqvia|senior clinical data visualization developer": {
   "first_seen": "2026-11-24",
   "score": null,
   "skip": "title: not a target role",
   "url_key": "b81b054cbc988246"
+ },
+ "jane technologies|account executive retail": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: account exec",
+  "url_key": "4ff4a2a43d333a43"
  },
  "jobber|manager software engineering operations": {
   "first_seen": "2026-11-23",
@@ -13823,6 +13937,12 @@
   "skip": "title: manager",
   "url_key": "b42acd5456c000dd"
  },
+ "lyra health|commercial manager europe": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "09a4ad84d9bfb766"
+ },
  "lyra health|sr customer success manager i": {
   "first_seen": "2026-11-26",
   "score": null,
@@ -13876,6 +13996,12 @@
   "score": null,
   "skip": "title: staff full",
   "url_key": "26b4eb576b82e612"
+ },
+ "maxana|zendesk administrator": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "d18f5deabb1aa09a"
  },
  "mechanize|junior swe swe research engineer alignment 300k 400k equity": {
   "first_seen": "2026-11-23",
@@ -16025,6 +16151,12 @@
   "skip": "title: staff software",
   "url_key": "c4aafd1652547f68"
  },
+ "netforemost inc|trainee flutter developer": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "c498fdb413c64157"
+ },
  "neuroscale ai|founding staff software engineer python fastapi": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -16090,6 +16222,12 @@
   "score": null,
   "skip": "title: architect",
   "url_key": "32219e2cb02571c4"
+ },
+ "next lotto gmbh|cro product experimentation manager remote": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "60c1b6fd9a8f8640"
  },
  "nirvana robotics|mechanical engineer electrical engineer robotic controls engineer": {
   "first_seen": "2026-11-23",
@@ -18137,6 +18275,18 @@
   "skip": "title: not a target role",
   "url_key": "5fab4e5e57776842"
  },
+ "path robotics|machine learning engineer robotics": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "1ff7d9206d6ca7bd"
+ },
+ "pavago|senior network engineer": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: network engineer",
+  "url_key": "be7f122045b1f25c"
+ },
  "payoneer|senior staff engineer stablecoin": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -19582,6 +19732,12 @@
   "score": null,
   "skip": "title: manager",
   "url_key": "7dd98922732c9c0f"
+ },
+ "pmpg|steuerberater in euskirchen 100 remote m glich": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "9dc6a8ab1e22e0e2"
  },
  "polymath|founding mts full stack": {
   "first_seen": "2026-11-23",
@@ -22769,6 +22925,12 @@
   "skip": "title: manager",
   "url_key": "128af9a545704543"
  },
+ "talent first|test customer support specialist": {
+  "first_seen": "2026-11-26",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "970cdf3c619fd413"
+ },
  "tameson|head of technical content": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -23806,6 +23968,12 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "a25f8728eae2cbe6"
+ },
+ "xpert development|backend engineer": {
+  "first_seen": "2026-11-26",
+  "score": 53,
+  "skip": null,
+  "url_key": "2e94d392a485943c"
  },
  "xperteez technology|graphic and editorial design expert remote": {
   "first_seen": "2026-11-24",
