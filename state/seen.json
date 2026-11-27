@@ -4571,6 +4571,12 @@
   "skip": "title: not a target role",
   "url_key": "20be0db93bba7a19"
  },
+ "bedford consulting|anaplan model builder": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "10e6abc8e1c5ac0a"
+ },
  "benzinga|product manager backend systems": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -4660,6 +4666,12 @@
   "score": null,
   "skip": "title: director",
   "url_key": "b5803c36742259cb"
+ },
+ "botstacks|data scientist": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: data scientist",
+  "url_key": "5fdc2765a24a41e8"
  },
  "bounteous|senior director client service": {
   "first_seen": "2026-11-27",
@@ -5026,6 +5038,30 @@
   "score": null,
   "skip": "title: security engineer",
   "url_key": "19d877666e7b096e"
+ },
+ "choate agency|financial advisors p c agents realtors add a life production platform rem": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "a3f8b72474d697cb"
+ },
+ "choate agency|part time or full time remote sales warm leads set your own hours weekly p": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: sales",
+  "url_key": "a8adc7267f5d3dfb"
+ },
+ "choate agency|part time remote sales work from home earn 2k to 6k a mos flexible hours": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: sales",
+  "url_key": "804c7d23d4b19b55"
+ },
+ "choate agency|remote part time sales 2 000 6 000 mo work from home weekly pay": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: sales",
+  "url_key": "96954b9b9014c985"
  },
  "ci t|job 32794 ai engineer master brazil": {
   "first_seen": "2026-11-27",
@@ -6293,6 +6329,12 @@
   "skip": "title: not a target role",
   "url_key": "ad08c5a1cdd2ecb2"
  },
+ "compass business solutions inc|talent sourcing specialist fractional schedule": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "278bd4b4c6300ab7"
+ },
  "confidential healthcare ai startup|senior full stack engineer": {
   "first_seen": "2026-11-23",
   "score": 48,
@@ -6670,6 +6712,12 @@
   "score": 60,
   "skip": null,
   "url_key": "2d6775224d4bcaa6"
+ },
+ "d2b|systems engineer": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "623e27df82ea06b6"
  },
  "databricks|sr technology partner director product partnerships": {
   "first_seen": "2026-11-23",
@@ -9263,6 +9311,12 @@
   "skip": "title: not a target role",
   "url_key": "7c6b0388db0f8259"
  },
+ "elation health|staff software engineer": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: staff software",
+  "url_key": "46f080b5c4a8ea94"
+ },
  "eleshop|senior php full stack engineer": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -9520,6 +9574,12 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "7faf21180867e91e"
+ },
+ "elevenlabs|developer advocate": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "09f452fb61b7693c"
  },
  "elevenlabs|developer experience engineer": {
   "first_seen": "2026-11-23",
@@ -13163,6 +13223,12 @@
   "skip": "title: manager",
   "url_key": "b8b0fe4cd6f7d1dd"
  },
+ "insideoutvas|senior intake specialist": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "321b471841ca516d"
+ },
  "insider one|director of sales north america": {
   "first_seen": "2026-11-26",
   "score": null,
@@ -13199,11 +13265,23 @@
   "skip": "title: not a target role",
   "url_key": "d78fbc8d6d0fc3ce"
  },
+ "io tech solutions limited|director engineering": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: director",
+  "url_key": "831d59f4b513540b"
+ },
  "iqvia|senior clinical data visualization developer": {
   "first_seen": "2026-11-24",
   "score": null,
   "skip": "title: not a target role",
   "url_key": "b81b054cbc988246"
+ },
+ "jamf|senior software engineer": {
+  "first_seen": "2026-11-27",
+  "score": 47,
+  "skip": null,
+  "url_key": "1a57e73bfc53b50a"
  },
  "jane technologies|account executive retail": {
   "first_seen": "2026-11-26",
@@ -13354,6 +13432,12 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "1ec926d1cb32da45"
+ },
+ "kitsch llc|production npd launch analyst": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "1d5b7f7a31ca5c35"
  },
  "knowmad mood|tech lead backend java arquitectura hexagonal remoto": {
   "first_seen": "2026-11-26",
@@ -13906,6 +13990,12 @@
   "score": null,
   "skip": "title: director",
   "url_key": "c84bb23389b40b35"
+ },
+ "limitless agency|hiring manager senior recruiter for digital marketing and lead generation agency": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "98e12ca6a6a37789"
  },
  "linear|account executive enterprise": {
   "first_seen": "2026-11-23",
@@ -16391,6 +16481,12 @@
   "skip": "title: staff software",
   "url_key": "c4aafd1652547f68"
  },
+ "netease games|community manager": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "746074b854d8e7f4"
+ },
  "netforemost inc|trainee flutter developer": {
   "first_seen": "2026-11-26",
   "score": null,
@@ -16474,6 +16570,30 @@
   "score": null,
   "skip": "title: manager",
   "url_key": "60c1b6fd9a8f8640"
+ },
+ "nextcloud|accountant finance executive assistant": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "b111361eb378ed52"
+ },
+ "nextcloud|back end engineer integration and ai": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "5d27d1743d4aa068"
+ },
+ "nextcloud|sales engineer consultant": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: sales",
+  "url_key": "d5886f99797f85a1"
+ },
+ "nextcloud|webrtc developer": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "e145d90e3cd86f6d"
  },
  "nirvana robotics|mechanical engineer electrical engineer robotic controls engineer": {
   "first_seen": "2026-11-23",
@@ -20069,6 +20189,12 @@
   "skip": "title: head of",
   "url_key": "681487270d530e24"
  },
+ "qima|lead designer ui ux and user research": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: designer",
+  "url_key": "30c5c4cb6381ca5f"
+ },
  "quanta infrastructure solutions group|senior category manager data centers": {
   "first_seen": "2026-11-27",
   "score": null,
@@ -21701,6 +21827,12 @@
   "skip": "title: architect",
   "url_key": "3649f4491efd174a"
  },
+ "rubrik job board|msp account executive dach": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: account exec",
+  "url_key": "99310cdf18f7e890"
+ },
  "rune labs|senior or lead backend engineer": {
   "first_seen": "2026-11-23",
   "score": 29,
@@ -22696,6 +22828,30 @@
   "score": 54,
   "skip": null,
   "url_key": "5e0002ee27dd8755"
+ },
+ "snipki|content lead": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "76e9accd230e117e"
+ },
+ "snowflake|district manager majors financial services": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "1829c47480c15f6a"
+ },
+ "snowflake|partner sales manager emea central": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "63e713bd5123e4eb"
+ },
+ "socket|account executive japan": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: account exec",
+  "url_key": "9cef07f54eff8102"
  },
  "socket|engineering manager": {
   "first_seen": "2026-11-27",
@@ -24052,6 +24208,12 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "d2d9db82a2dfbd11"
+ },
+ "vitalief|director clinical research operations service line activation": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: director",
+  "url_key": "cbe757ad8669fd16"
  },
  "viva finance|front end mobile developer": {
   "first_seen": "2026-11-23",
