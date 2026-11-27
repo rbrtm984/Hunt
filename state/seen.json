@@ -299,6 +299,12 @@
   "skip": "title: not a target role",
   "url_key": "bab7d2805a4be22d"
  },
+ "aduna|developer advocate network apis": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "bc39f979b307a427"
+ },
  "aethergrid|founding gtm lead": {
   "first_seen": "2026-11-23",
   "score": 40,
@@ -311,17 +317,35 @@
   "skip": "title: account exec",
   "url_key": "d289354e63fa0144"
  },
+ "agiloft|enterprise account executive western us": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: account exec",
+  "url_key": "7843e8077d5849f5"
+ },
  "agiloft|manager account managment": {
   "first_seen": "2026-11-26",
   "score": null,
   "skip": "title: manager",
   "url_key": "9132927d46a3c37a"
  },
+ "agiloft|partner solution architect partner center of excellence": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: architect",
+  "url_key": "1999323039ae2a4d"
+ },
  "ai x healthcare startup|early engineer": {
   "first_seen": "2026-11-23",
   "score": null,
   "skip": "title: not a target role",
   "url_key": "a344fdc618157b23"
+ },
+ "airalo|android developer": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: android",
+  "url_key": "29cb2828c62940a2"
  },
  "airbnb|senior software engineer partner integrations": {
   "first_seen": "2026-11-23",
@@ -3833,11 +3857,23 @@
   "skip": "title: not a target role",
   "url_key": "75691256bc7096a1"
  },
+ "ashby|engineering manager americas": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "0579f1bbe9982784"
+ },
  "attentive|senior software engineer data platform": {
   "first_seen": "2026-11-25",
   "score": 31,
   "skip": null,
   "url_key": "f1ab66df58e8fc37"
+ },
+ "audioeye|staff software engineer": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: staff software",
+  "url_key": "a2f3dfc2adfab810"
  },
  "augment|revenue operations analyst": {
   "first_seen": "2026-11-25",
@@ -4595,6 +4631,12 @@
   "skip": "title: manager",
   "url_key": "4282576afc593781"
  },
+ "biz factory gmbh|systemadministrator devops engineer f r linux und kubernetes basierte": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: devops",
+  "url_key": "3406f6c9fea635eb"
+ },
  "blackbaud|vice president nonprofit vertical sales": {
   "first_seen": "2026-11-26",
   "score": null,
@@ -4618,6 +4660,12 @@
   "score": null,
   "skip": "title: director",
   "url_key": "b5803c36742259cb"
+ },
+ "bounteous|senior director client service": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: director",
+  "url_key": "14c99ed24a3538dc"
  },
  "bounteous|seo manager": {
   "first_seen": "2026-11-26",
@@ -4744,6 +4792,12 @@
   "score": null,
   "skip": "title: manager",
   "url_key": "a9f0936f843f0902"
+ },
+ "canonical|engineering manager ubuntu core": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "68eb9dfd1019b738"
  },
  "canonical|golang engineer": {
   "first_seen": "2026-11-25",
@@ -4972,6 +5026,12 @@
   "score": null,
   "skip": "title: security engineer",
   "url_key": "19d877666e7b096e"
+ },
+ "ci t|job 32794 ai engineer master brazil": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "location: remote outside the US (Remote (Brazil))",
+  "url_key": "f6ac2f3cfec02842"
  },
  "cinnamon|lead roblox developer pod e": {
   "first_seen": "2026-11-26",
@@ -5356,6 +5416,12 @@
   "score": null,
   "skip": "title: vp",
   "url_key": "f8e95c50427a98cf"
+ },
+ "clickup|director demand generation": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: director",
+  "url_key": "e3ef334c0c082961"
  },
  "clickup|engineering manager": {
   "first_seen": "2026-11-23",
@@ -6209,6 +6275,18 @@
   "skip": null,
   "url_key": "e4ac12d9fa55565a"
  },
+ "commonspirit health|coder": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "fdd4a7e858c98bbe"
+ },
+ "commonspirit health|mkt manager revenue cycle inpatient coding tx": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "2a107c1cb5e9d084"
+ },
  "company|team lead product design": {
   "first_seen": "2026-11-24",
   "score": null,
@@ -6263,6 +6341,12 @@
   "skip": "title: staff software",
   "url_key": "22523eb36fe995be"
  },
+ "coupa|manager technical support": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "bfc140239d857275"
+ },
  "coursera|account development representative": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -6292,6 +6376,12 @@
   "score": null,
   "skip": "title: account exec",
   "url_key": "eacae85395499127"
+ },
+ "coursera|content lead creator ecosystem experience": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "a293dbc04428446c"
  },
  "coursera|corporate fp a manager": {
   "first_seen": "2026-11-23",
@@ -6485,6 +6575,12 @@
   "skip": "title: not a target role",
   "url_key": "fe1764ee9a3c897e"
  },
+ "creative force|produktspezialist in": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "3593fff63357dcd8"
+ },
  "creativelens|founding growth sales lead": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -6556,6 +6652,12 @@
   "score": null,
   "skip": "title: manager",
   "url_key": "44504c62d9d5b534"
+ },
+ "customer io|engineering manager": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "3a604c681cc827c2"
  },
  "cynet|strategic account executive": {
   "first_seen": "2026-11-23",
@@ -9773,6 +9875,12 @@
   "skip": "title: manager",
   "url_key": "d8d12f4f21ffc74b"
  },
+ "elevenlabs|product marketing agents": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "e486f847d28f3c89"
+ },
  "elevenlabs|public sector partnerships lead france": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -10013,6 +10121,18 @@
   "skip": "title: not a target role",
   "url_key": "f23c4e80f8bf07fd"
  },
+ "ethena|sales engineer": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: sales",
+  "url_key": "509768f3633d9074"
+ },
+ "ethena|senior accountant": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "b662f46ec2dfcf36"
+ },
  "evaboot|agentic python engineer": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -10132,6 +10252,12 @@
   "score": 81,
   "skip": null,
   "url_key": "55cddcd9f3d19d53"
+ },
+ "fin|mobile engineer": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: mobile",
+  "url_key": "a587d27d07d900f6"
  },
  "fleetio|senior software engineer growth": {
   "first_seen": "2026-11-23",
@@ -11284,6 +11410,12 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "97affe55db417ae5"
+ },
+ "harvey|customer success leader singapore": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "0445016622ef8927"
  },
  "harvey|customer success manager enterprise": {
   "first_seen": "2026-11-23",
@@ -13091,6 +13223,18 @@
   "skip": "title: director",
   "url_key": "7cb0a26671970a58"
  },
+ "jobgether|client account executive": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: account exec",
+  "url_key": "fe513df29014ef5c"
+ },
+ "jobgether|director of strategic accounts south central": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: director",
+  "url_key": "2142657a2f42fda1"
+ },
  "jobgether|knowledge engineer": {
   "first_seen": "2026-11-26",
   "score": null,
@@ -13102,6 +13246,12 @@
   "score": null,
   "skip": "title: director",
   "url_key": "96153a06b2ed1735"
+ },
+ "jobgether|traveling account executive neurology rare disease": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: account exec",
+  "url_key": "8896eb77a2427782"
  },
  "joulent|ai engineer company brain": {
   "first_seen": "2026-11-23",
@@ -13162,6 +13312,12 @@
   "score": null,
   "skip": "title: manager",
   "url_key": "2770d85897063bb8"
+ },
+ "keystone bookkeepers|accounting manager": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "a73b4257da7be652"
  },
  "khan academy|khan kids senior consumer marketing manager": {
   "first_seen": "2026-11-24",
@@ -13649,6 +13805,12 @@
   "skip": "title: manager",
   "url_key": "8e4f3fc1898aa2ab"
  },
+ "lastpass|senior frontend engineer": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "location: remote outside the US (Remote (Europe))",
+  "url_key": "f8e3cae1b03a13b3"
+ },
  "lastpass|senior product design manager": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -13883,11 +14045,23 @@
   "skip": "title: not a target role",
   "url_key": "3276b5fd6a7b51fa"
  },
+ "livekit|content engineer developer documentation": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "40ad704414782c93"
+ },
  "livekit|full time livekit is building the infrastructure layer for the voice driven era of computing our platform gives develop": {
   "first_seen": "2026-11-23",
   "score": null,
   "skip": "title: not a target role",
   "url_key": "8e1e8c32fa29170b"
+ },
+ "livekit|staff compliance engineer": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "e3ed8f86ab2c9fd6"
  },
  "liveops|agent results advocate": {
   "first_seen": "2026-11-26",
@@ -13960,6 +14134,12 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "f44e9537c78abf6e"
+ },
+ "maia|software engineer ai remote": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "location: remote outside the US (Remote (Germany))",
+  "url_key": "5abea27e721c9139"
  },
  "makai labs|ai engineer": {
   "first_seen": "2026-11-23",
@@ -14044,6 +14224,42 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "906ae24e6843bf5e"
+ },
+ "micro1|autodesk fusion cam expert": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "7290b584590fb454"
+ },
+ "micro1|clinical psychologist": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "7b293a3231f65980"
+ },
+ "micro1|imagery analyst": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "7ee4df978415da01"
+ },
+ "micro1|licensed mental health clinician": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "0f2425ccbc92d918"
+ },
+ "micro1|mechanical design engineer aerospace cnc parts": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "46414c000392c541"
+ },
+ "micro1|mechanical design engineer semiconductor vacuum hardware": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: hardware",
+  "url_key": "11b795d2276491ae"
  },
  "mitre media|tech lead full stack rails engineer": {
   "first_seen": "2026-11-23",
@@ -14608,6 +14824,18 @@
   "score": null,
   "skip": "title: director",
   "url_key": "c02401ab6ac28e6e"
+ },
+ "mongodb|eae ai sales specialist dach": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: sales",
+  "url_key": "06a2f2ad6d2d624d"
+ },
+ "mongodb|eae ai sales specialist uki": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: sales",
+  "url_key": "5bde1227198a6e03"
  },
  "mongodb|early talent recruiter": {
   "first_seen": "2026-11-23",
@@ -15209,6 +15437,12 @@
   "skip": "title: account exec",
   "url_key": "60f6dbdda591b6f5"
  },
+ "mongodb|senior escalation manager": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "5ef7aa0577aa87d7"
+ },
  "mongodb|senior financial analyst": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -15767,6 +16001,12 @@
   "skip": "location: Toronto",
   "url_key": "6a1a9b167b39c3df"
  },
+ "mongodb|software engineer 3 kubernetes": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "location: Dublin, Ireland",
+  "url_key": "55cc22106ce272e2"
+ },
  "mongodb|software engineer 3 kubernetes platform": {
   "first_seen": "2026-11-25",
   "score": null,
@@ -16156,6 +16396,12 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "c498fdb413c64157"
+ },
+ "netomi|partner director federal": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: director",
+  "url_key": "fc9dc013bf3b4a14"
  },
  "neuroscale ai|founding staff software engineer python fastapi": {
   "first_seen": "2026-11-23",
@@ -17177,6 +17423,12 @@
   "skip": "title: not a target role",
   "url_key": "c1624f7e4ca0ec89"
  },
+ "oddball|vp of engineering": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: vp",
+  "url_key": "f642960f8613597f"
+ },
  "odette technologies|senior integration engineer data ml engineer product lead": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -17296,6 +17548,18 @@
   "score": null,
   "skip": "location: HYBRID",
   "url_key": "13c823582332790a"
+ },
+ "outmarket ai|customer success manager": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "ee4b6b9de525d1bd"
+ },
+ "pair team|principal engineering manager ai care": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "c75e88c3e173cadf"
  },
  "palantir|administrative business partner": {
   "first_seen": "2026-11-23",
@@ -18863,6 +19127,12 @@
   "skip": "title: intern",
   "url_key": "aa13a1a1047bbbc7"
  },
+ "phantom|staff engineer full stack": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: staff engineer",
+  "url_key": "3092de7a1750efb9"
+ },
  "ping identity|business services assistant": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -19781,11 +20051,29 @@
   "skip": "title: principal",
   "url_key": "1a78f8bf12ed87d0"
  },
+ "protective life|sr dynamics 365 app developer": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "5c4bf80969a101e9"
+ },
  "proxima fusion|senior software engineer": {
   "first_seen": "2026-11-23",
   "score": null,
   "skip": "location: ONSITE",
   "url_key": "4f86f12b802d1804"
+ },
+ "qiibee|head of customer success loyalty and partner platforms": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: head of",
+  "url_key": "681487270d530e24"
+ },
+ "quanta infrastructure solutions group|senior category manager data centers": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "d650c740905237f8"
  },
  "quartermaster|quality engineer": {
   "first_seen": "2026-11-23",
@@ -19804,6 +20092,18 @@
   "score": 55,
   "skip": null,
   "url_key": "08aa0bd90415e0e5"
+ },
+ "quilter|senior ml engineer": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "1acfc6fcddd63148"
+ },
+ "quilter|staff ml systems engineer": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "a54979b65edb1fbe"
  },
  "quinstreet|sr java developer": {
   "first_seen": "2026-11-23",
@@ -20987,6 +21287,12 @@
   "skip": "title: not a target role",
   "url_key": "176ca951b02b05ff"
  },
+ "raya|senior ios engineer foundations": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: ios",
+  "url_key": "4217577b4ca49384"
+ },
  "real remax group|senior tax associate": {
   "first_seen": "2026-11-25",
   "score": null,
@@ -21401,6 +21707,12 @@
   "skip": null,
   "url_key": "688f284dc167b9bb"
  },
+ "s f steuerberatungsgesellschaft|steuerfachangestellter steuerfachwirt bilanzbuchhalter": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "541c57f76a98850d"
+ },
  "sadservers|software engineer": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -21437,6 +21749,12 @@
   "skip": "title: not a target role",
   "url_key": "c15d01dc95391323"
  },
+ "saviynt|account executive chicago": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: account exec",
+  "url_key": "68c9cf6d5df0314f"
+ },
  "saviynt|regional vice president field sales": {
   "first_seen": "2026-11-26",
   "score": null,
@@ -21454,6 +21772,12 @@
   "score": null,
   "skip": "title: sales",
   "url_key": "531a9dc095e94be5"
+ },
+ "saviynt|strategic account executive nyc": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: account exec",
+  "url_key": "b0aa6870745ffd9a"
  },
  "sayari|forward deployed engineer i": {
   "first_seen": "2026-11-23",
@@ -21490,6 +21814,12 @@
   "score": null,
   "skip": "title: manager",
   "url_key": "2b0c1fa1e0e4fa1b"
+ },
+ "secure code warrior|sales engineer us east": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: sales",
+  "url_key": "bbea42fbfb97702d"
  },
  "secure code warrior|sr manager revenue enablement": {
   "first_seen": "2026-11-26",
@@ -22307,6 +22637,12 @@
   "skip": "location: ONSITE",
   "url_key": "ae91ba9c5f8b2f4d"
  },
+ "silverback strategies|paid media manager": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "3d40a529007ae456"
+ },
  "silverback strategies|senior paid media manager": {
   "first_seen": "2026-11-26",
   "score": null,
@@ -22361,6 +22697,12 @@
   "skip": null,
   "url_key": "5e0002ee27dd8755"
  },
+ "socket|engineering manager": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "eef3d51de379a2ff"
+ },
  "socure|senior manager solution engineering docv": {
   "first_seen": "2026-11-24",
   "score": null,
@@ -22396,6 +22738,12 @@
   "score": 36,
   "skip": null,
   "url_key": "339ef6170ed49d26"
+ },
+ "spotify|senior engineering manager agentic products": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "0ace9defc3f4e871"
  },
  "starbridge|senior product engineer": {
   "first_seen": "2026-11-23",
@@ -22445,11 +22793,23 @@
   "skip": "seniority: asks for 12+ years",
   "url_key": "9303c2f6dc2a1799"
  },
+ "stripe|privacy counsel americas": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "821b88dc38c73c2e"
+ },
  "stripe|technical solutions engineer": {
   "first_seen": "2026-11-23",
   "score": null,
   "skip": "title: not a target role",
   "url_key": "1b938a2358bd0159"
+ },
+ "stronger gmbh|creative strategist vollzeit": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "e9d0ce8e81d9f750"
  },
  "subimage|founding engineer": {
   "first_seen": "2026-11-23",
@@ -23075,6 +23435,18 @@
   "skip": null,
   "url_key": "ba38c4392feff73a"
  },
+ "trm labs|agent engineer us remote": {
+  "first_seen": "2026-11-27",
+  "score": 77,
+  "skip": null,
+  "url_key": "3f8e3e5eb08ff558"
+ },
+ "ttec digital|head of professional services nice": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: head of",
+  "url_key": "0d9b7a9bfa46d489"
+ },
  "twilio|architect": {
   "first_seen": "2026-11-23",
   "score": null,
@@ -23128,6 +23500,24 @@
   "score": null,
   "skip": "title: director",
   "url_key": "de2550ac60ef7d76"
+ },
+ "veeva systems|consultant people science": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "e8c6bd7f56e65cb8"
+ },
+ "veeva systems|product marketing manager ostro": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "4fbd56e81eb6ad37"
+ },
+ "veeva systems|sales director quality": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: director",
+  "url_key": "e6b1ed45511ad09c"
  },
  "veeva systems|senior implementation consultant pharmacovigilance reporting": {
   "first_seen": "2026-11-26",
@@ -23675,17 +24065,47 @@
   "skip": "title: embedded",
   "url_key": "1c7ddd9aac973fd2"
  },
+ "voltus|senior energy markets analyst pjm": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "f2412bd0a6c1b407"
+ },
  "voluntas|software engineer": {
   "first_seen": "2026-11-23",
   "score": 36,
   "skip": null,
   "url_key": "a5e6b4a03b60d2b1"
  },
+ "vultr|customer service representative": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "59beae3a1988e4be"
+ },
+ "vultr|senior service delivery manager": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "836dbe71ae805611"
+ },
+ "vultr|service delivery manager": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: manager",
+  "url_key": "39ffb0e981007ba5"
+ },
  "vxi global solutions|us remote patient care advocate": {
   "first_seen": "2026-11-23",
   "score": null,
   "skip": "title: not a target role",
   "url_key": "31aff4ed67631cfc"
+ },
+ "warner music group|director of software engineering": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: director",
+  "url_key": "c0d2f1639a485b43"
  },
  "we are next|software engineer": {
   "first_seen": "2026-11-23",
@@ -23704,6 +24124,24 @@
   "score": null,
   "skip": "title: not a target role",
   "url_key": "9d1b6f307015de85"
+ },
+ "welo data|brazilian subject matter expert in fandoms": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "4439377cf821071c"
+ },
+ "welo data|brazilian subject matter expert in games puzzles play": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "c40662b78be721d1"
+ },
+ "welo data|brazilian subject matter expert in home garden": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "677272e1e7c587ad"
  },
  "welo data|english to belarusian review lead for ui marketing product content": {
   "first_seen": "2026-11-26",
@@ -23758,6 +24196,12 @@
   "score": null,
   "skip": "title: sales",
   "url_key": "de66c06b20126777"
+ },
+ "wns global services|consultant genai application development": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "9b097b1eb6f0251a"
  },
  "wpromote|director ai solutions": {
   "first_seen": "2026-11-23",
@@ -23981,11 +24425,23 @@
   "skip": "title: not a target role",
   "url_key": "f871cccd10b9d8aa"
  },
+ "xperteez technology|visual content evaluator remote contract": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "292aa43ea333f39a"
+ },
  "yes llc|interested in freelancing for yes send us your resume": {
   "first_seen": "2026-11-25",
   "score": null,
   "skip": "title: not a target role",
   "url_key": "c837a05d1fb0773f"
+ },
+ "yipitdata|product counsel": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "b39435211d4bfa03"
  },
  "you com|senior back end engineer platform": {
   "first_seen": "2026-11-23",
@@ -24011,6 +24467,12 @@
   "skip": "title: designer",
   "url_key": "1dc1cca3f13d9e74"
  },
+ "zimperium|enterprise account executive new york": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: account exec",
+  "url_key": "150169775cb3f159"
+ },
  "zimperium|regional account manager canada": {
   "first_seen": "2026-11-26",
   "score": null,
@@ -24022,5 +24484,11 @@
   "score": null,
   "skip": "title: architect",
   "url_key": "fa5fea137f6034a3"
+ },
+ "zip|support operations lead": {
+  "first_seen": "2026-11-27",
+  "score": null,
+  "skip": "title: not a target role",
+  "url_key": "32f91e6627c6c7f2"
  }
 }
